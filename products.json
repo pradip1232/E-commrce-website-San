@@ -1,0 +1,327 @@
+{
+  "Men": [
+    {
+      "id": 1,
+      "title": "Men Cotton Shirt",
+      "image": "assets/images/product_images/10 2.png",
+      "description": "Comfortable cotton shirt for men",
+      "price": 2590
+    }
+  ],
+  "Women": [
+    {
+      "id": 2,
+      "title": "Women T-shirt",
+      "image": "assets/images/product_images/10 2.png",
+      "description": "Stylish T-shirt for women",
+      "price": 1500
+    },
+    {
+      "id": 5,
+      "title": "Women Cotton Kurti",
+      "image": "assets/images/product_images/11 5 (1).png",
+      "description": "Elegant cotton kurti for women",
+      "price": 2200
+    }
+  ],
+  "Kids": [
+    {
+      "id": 3,
+      "title": "Kids Hoodie",
+      "image": "assets/images/product_images/haircare3.png",
+      "description": "Warm hoodie for kids",
+      "price": 1999.99
+    }
+  ],
+  "Teen": [
+    {
+      "id": 4,
+      "title": "Teen Denim Jacket",
+      "image": "assets/images/product_images/haircare4.png",
+      "description": "Trendy denim jacket for teens",
+      "price": 3499
+    }
+  ],
+  "Books": [
+    {
+      "id": 6,
+      "title": "Product 6",
+      "image": "assets/images/product_images/haircare6.png",
+      "description": "This is the description for Product 6",
+      "price": 9.99
+    }
+  ],
+  "Electronics": [
+    {
+      "id": 7,
+      "title": "Product 7",
+      "image": "assets/images/product_images/haircare7.png",
+      "description": "This is the description for Product 7",
+      "price": 399.99
+    }
+  ],
+  "Furniture": [
+    {
+      "id": 8,
+      "title": "Product 8",
+      "image": "assets/images/product_images/haircare8.webp",
+      "description": "This is the description for Product 8",
+      "price": 299.99
+    }
+  ],
+  "Fashion": [
+    {
+      "id": 9,
+      "title": "Product 9",
+      "image": "assets/images/product_images/haircare9.png",
+      "description": "This is the description for Product 9",
+      "price": 59.99
+    }
+  ],
+  "Toys": [
+    {
+      "id": 15,
+      "title": "Product 15",
+      "image": "assets/images/product_images/default.png",
+      "description": "This is the description for Product 15",
+      "price": 29.99
+    }
+  ],
+  "healthcare": [
+    {
+      "id": 16,
+      "title": "Health Care Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 1",
+      "price": 585
+    },
+    {
+      "id": 17,
+      "title": "Health Care Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 2",
+      "price": 100
+    },
+    {
+      "id": 18,
+      "title": "Health Care Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 3",
+      "price": 100
+    },
+    {
+      "id": 19,
+      "title": "Health Care Item 4",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 31",
+      "price": 135
+    }
+  ],
+  "healthsupplements": [
+    {
+      "id": 20,
+      "title": "Supplement Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 4",
+      "price": 100
+    },
+    {
+      "id": 21,
+      "title": "Supplement Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 5",
+      "price": 100
+    },
+    {
+      "id": 22,
+      "title": "Supplement Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 6",
+      "price": 100
+    }
+  ],
+  "beverages": [
+    {
+      "id": 23,
+      "title": "Beverage Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 7",
+      "price": 100
+    },
+    {
+      "id": 24,
+      "title": "Beverage Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 8",
+      "price": 100
+    },
+    {
+      "id": 25,
+      "title": "Beverage Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 9",
+      "price": 1870
+    }
+  ],
+  "personalcare": [
+    {
+      "id": 26,
+      "title": "Personal Care Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 10",
+      "price": 100
+    },
+    {
+      "id": 27,
+      "title": "Personal Care Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 11",
+      "price": 100
+    },
+    {
+      "id": 28,
+      "title": "Personal Care Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 12",
+      "price": 100
+    }
+  ],
+  "haircare": [
+    {
+      "id": 29,
+      "title": "Hair Care Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 13",
+      "price": 100
+    },
+    {
+      "id": 30,
+      "title": "Hair Care Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 14",
+      "price": 100
+    },
+    {
+      "id": 31,
+      "title": "Hair Care Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 15",
+      "price": 100
+    }
+  ],
+  "oralcare": [
+    {
+      "id": 32,
+      "title": "Oral Care Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 16",
+      "price": 100
+    },
+    {
+      "id": 33,
+      "title": "Oral Care Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 17",
+      "price": 100
+    },
+    {
+      "id": 34,
+      "title": "Oral Care Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 18",
+      "price": 100
+    }
+  ],
+  "skincare": [
+    {
+      "id": 35,
+      "title": "Skin Care Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 19",
+      "price": 100
+    },
+    {
+      "id": 36,
+      "title": "Skin Care Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 20",
+      "price": 100
+    },
+    {
+      "id": 37,
+      "title": "Skin Care Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 21",
+      "price": 100
+    }
+  ],
+  "ayurvedicmedicines": [
+    {
+      "id": 38,
+      "title": "Ayurvedic Medicine Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 22",
+      "price": 100
+    },
+    {
+      "id": 39,
+      "title": "Ayurvedic Medicine Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 23",
+      "price": 100
+    },
+    {
+      "id": 40,
+      "title": "Ayurvedic Medicine Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 24",
+      "price": 100
+    }
+  ],
+  "classicmedicines": [
+    {
+      "id": 41,
+      "title": "Classic Medicine Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 25",
+      "price": 100
+    },
+    {
+      "id": 42,
+      "title": "Classic Medicine Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 26",
+      "price": 160
+    },
+    {
+      "id": 43,
+      "title": "Classic Medicine Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 27",
+      "price": 100
+    }
+  ],
+  "patentmedicines": [
+    {
+      "id": 44,
+      "title": "Patent Medicine Item 1",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 28",
+      "price": 100
+    },
+    {
+      "id": 45,
+      "title": "Patent Medicine Item 2",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 29",
+      "price": 100
+    },
+    {
+      "id": 46,
+      "title": "Patent Medicine Item 3",
+      "image": "assets/images/product_images/default.png",
+      "description": "Description 30",
+      "price": 464
+    }
+  ]
+}

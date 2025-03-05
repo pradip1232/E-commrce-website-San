@@ -1,0 +1,13 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# If the request does not contain a file extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite URLs to add the .php extension
+RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+
+# Optionally, if you want to support both .php and .html
+# Uncomment the lines below and add the extension(s) you want to support
+# RewriteRule ^([^/]+)/?$ $1.html [L,QSA]

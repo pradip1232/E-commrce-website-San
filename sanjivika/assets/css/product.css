@@ -1,0 +1,314 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@200&display=swap');
+.card-body{
+    padding: 0;
+}
+.sidebar {
+    float: left;
+    width: 200px;
+    padding: 10px;
+    /* background-color: #f0f0f0; */
+}
+.category:hover {
+    background-color: #e0e0e0; /* Change to the desired background color */
+}
+.custom-footer-bg {
+    background-color: #fbeaca;
+}
+
+.card-container {
+    float: left;
+    
+    padding: 10px;
+}
+.side-card-img{
+    width: 211px !important;
+    height: 348px !important;
+    margin: 10px !important;
+    display: inline-block !important;
+    background-color: #F4F4F4 !important;
+}
+/* .card-img-top{
+   
+} */
+
+.btn-ayurvedic-btns{
+    border: none;
+    width: 103px;
+    height: 26px;
+    color: 26px;
+    font-family:Roboto ;
+    font-size: 16px;
+    font-weight: 400;
+
+    background-color: #77C712;
+}
+.health-care-1{
+  font-family:Roboto ; 
+  font-weight: 400; 
+  font-size: 20px;
+  /* width: 286px; */
+  color: #77C712;
+  text-align: left;
+  background-color: #e0e0e0;
+  padding-left: 10px;
+}
+.health-care-2{
+  font-family:Roboto ; 
+  font-weight: 400; 
+  font-size: 18px;
+  width: 182px;
+  color: #000000;
+  text-align: left;
+  padding-left: 10px;
+}
+.cards-first-top-heading{
+    font-family:Archivo ; 
+  font-weight: 300; 
+  font-size: 16px;
+  color: #000000;
+}
+.black-heart{
+   width: 22px !important; 
+   height: 22px !important;
+}
+.beverages-1{
+    font-family:Roboto ; 
+    font-weight: 400; 
+    font-size: 18px;
+    width: 125px;
+   color: #482607;
+   text-align: left;
+   padding-left: 10px;
+}
+.reviews-4{
+    font-family:Archivo ; 
+    font-weight: 200; 
+    font-size: 10px;  
+}
+.all-categories{
+    font-family:Roboto ; 
+    font-weight: 700; 
+    font-size: 32px;  
+    color: #482607;
+}
+.home-product-page-top{
+color: #898785;
+}
+
+.beverages-2{
+    /* width: 286px; */
+    font-family:Roboto;
+    font-weight:400 ;
+    font-size: 20px;
+    color: #77C712;
+    text-align: left;
+    background-color: #e0e0e0;
+    padding-left: 10px;
+}
+.beverages-3{
+    width: 182px;
+    font-family:Roboto;
+    font-weight:400 ;
+    font-size: 18px;
+    color: #000000;
+    text-align: left;
+    padding-left: 10px;
+}
+.beverages-4{
+    width: 182px;
+    font-family:Roboto;
+    font-weight:400 ;
+    font-size: 18px;
+    color: #000000;
+    text-align: left;
+    padding-left: 10px;
+}
+.beverages-5{
+    width: 182px;
+    font-family:Roboto;
+    font-weight:400 ;
+    font-size: 18px;
+    color: #000000;
+    text-align: left;
+    padding-left: 10px;
+}
+.Ayurvedic-1{
+    /* width: 286px; */
+    font-family:Roboto;
+    font-weight:400 ;
+    font-size: 20px;
+    color: #77C712;
+    text-align: left;
+    background-color: #e0e0e0;
+    padding-left: 10px;
+}
+.Ayurvedic-2{
+    width: 213px;
+    font-family:Roboto;
+    font-weight:300 ;
+    font-size: 18px;
+    color: #000000;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.Ayurvedic-3{
+    width: 213px;
+    font-family:Roboto;
+    font-weight:300 ;
+    font-size: 18px;
+    color: #000000;
+    text-align: left;
+    padding-left: 10px;
+}
+.card-body {
+    text-align: center;
+}
+/* .card {
+    margin-bottom: 20px;
+} */
+.card-product2 img {
+   width: 149px;
+   height: 205px;
+  
+}
+.side-card-img-select-card-img{
+    width: 211px ;
+    height: 348px ;
+    margin: 10px ;
+    display: inline-block ;
+    background-color: #F4F4F4 ;
+}
+
+.card-img-top {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 148px;
+    height: 213px;
+}
+.cardbody-size{
+    /* padding-right: 2rem !important; */
+    /* padding-left: 10px; */
+    padding-top: 0 !important;
+}
+.card-title{
+    font-family: Archivo;
+    font-weight:300 ;
+    font-size: 14px;
+}
+/* CSS for star rating */
+.rating {
+    color: #ffc107; /* Set star color */
+}
+
+.star::before {
+    content: '\2605'; /* Unicode character for a star */
+}
+.size-sect-cards{
+    
+}
+.btn-product-add{
+    background-color: #77C712;
+    border: none ;
+    font-family: Roboto;
+    font-weight:400 ;
+    font-size: 16px;
+    color: #FFFFFF;
+    width: 103px;
+    height:26px ;
+    margin-bottom: 10px;
+
+  }
+.star{
+    width: 66.92px;
+    height: 10px;
+}
+.reviews{
+    font-family: Archivo;
+    font-weight:200 ;
+    font-size: 10px;
+    color: #000000;
+}
+.price{
+    font-size:20px ;
+    font-family: Archivo;
+    font-weight: 500;
+    margin: 0;
+
+}
+.btn-add-to-add{
+    width:103px ;
+    height:26px ;
+    background-color: #77C712;
+    border: none;
+    color: #FFFFFF;
+}
+.heart-icon{
+    width: 22px !important;
+    height: 22px !important;
+}
+.all-categoeries-heading-top{
+    font-size:32px ;
+    font-family: Roboto;
+    font-weight:700 ;
+    color: #482607;
+}
+.category-card{
+width: 303px;
+height: 146px;
+padding-right: 10rem;
+}
+.product-page-home{
+    font-family: Roboto;
+    font-weight:400 ;
+    font-size: 18px;
+    /* background: #00102636; */
+    color: #c4c1c1;
+
+}
+/* Media query for mobile views (768px or less) */
+@media (max-width: 768px) {
+    .btn-ayurvedic-btns {
+        /* Add mobile-specific styles if needed */
+        margin-bottom: 1rem; /* Add margin below the button */
+    }
+    .card-product2 {
+        /* Add mobile-specific styles if needed */
+        margin: 1rem; /* Ensure there is space around each card */
+    }
+    .header-logo-about-us {
+        height: 12vh;
+        width: 12vw !important ;
+        margin-left: 0px;
+        margin-top: -14px !important;
+      }
+      .toggle-icon-left{
+        padding: 0 !important;
+      }
+      .nav-bar-toggler-2{
+        padding: 0 !important;
+      }
+      .toggle-close-container{
+        display: flex !important;
+        justify-content: flex-end !important;
+      }
+      .cross-icon{
+        display: block !important;
+       }
+ 
+}
+.card-body-bottom-content{
+    padding-bottom: 14px !important;
+    /* height: 50vh; */
+  }
+  /* #cardContainer{
+width: 18vw !important;
+
+  } */
+   .cross-icon{
+    display: none;
+   }

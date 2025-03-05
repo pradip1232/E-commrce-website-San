@@ -1,0 +1,35 @@
+{
+    "Mobile Phones": [
+        {
+            "id": "PROD-8379678029",
+            "title": "TEst",
+            "sku": "SKU455847599225",
+            "image": null,
+            "description": "dfgdfgdfg",
+            "total_quantity": 200,
+            "price": 21564
+        }
+    ],
+    "Skincare": [
+        {
+            "id": "PROD-5214614403",
+            "title": "Test 23",
+            "sku": "SKU270730039546",
+            "image": null,
+            "description": "demo",
+            "total_quantity": 200,
+            "price": 2323
+        }
+    ],
+    "Footwear": [
+        {
+            "id": "PROD-2224924601",
+            "title": "TEst 223",
+            "sku": "SKU320482110878",
+            "image": null,
+            "description": "demo",
+            "total_quantity": 500,
+            "price": 321
+        }
+    ]
+}

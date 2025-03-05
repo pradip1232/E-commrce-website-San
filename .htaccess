@@ -1,0 +1,44 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# If the request does not contain a file extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite URLs to add the .php extension
+RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+
+# Optionally, if you want to support both .php and .html
+# Uncomment the lines below and add the extension(s) you want to support
+# RewriteRule ^([^/]+)/?$ $1.html [L,QSA]
+
+
+
+
+
+
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Redirect from non-www to www (if needed)
+RewriteCond %{HTTP_HOST} ^sanjeevika.com [NC]
+RewriteRule ^(.*)$ https://www.sanjeevika.com/$1 [L,R=301]
+
+# Handle 404 errors by redirecting to a custom error page (e.g., 404.html in the same directory)
+ErrorDocument 404 /404.html
+
+# Force HTTPS (ensure the site uses HTTPS if available)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Optional: Rewrite rules for cleaner URLs (if you're using friendly URLs)
+# Example: Redirect old URLs to new URLs
+# RewriteRule ^old-page$ /new-page [L,R=301]
+
+# Rewrite to the correct directory if needed (for pages like index.php)
+RewriteCond %{REQUEST_URI} ^/newtest/sanjivika/(.*)$
+RewriteRule ^(.*)$ /newtest/sanjivika/$1 [L]
+
+# Ensure index.php is used if no file is specified
+DirectoryIndex index.php

@@ -1,0 +1,676 @@
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item>div {
+    display: none;
+  }
+
+  .carousel-inner .carousel-item>div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-start,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+  // transition-duration: 10s;
+}
+
+/* display 4 */
+@media (min-width: 768px) {
+
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next,
+  .carousel-item-next:not(.carousel-item-start) {
+    transform: translateX(25%) !important;
+  }
+
+  .carousel-inner .carousel-item-left.active,
+  .carousel-item-prev:not(.carousel-item-end),
+  .active.carousel-item-start,
+  .carousel-item-prev:not(.carousel-item-end) {
+    transform: translateX(-25%) !important;
+  }
+
+  .carousel-item-next.carousel-item-start,
+  .active.carousel-item-end {
+    transform: translateX(0) !important;
+  }
+
+  .carousel-inner .carousel-item-prev,
+  .carousel-item-prev:not(.carousel-item-end) {
+    transform: translateX(-25%) !important;
+  }
+}
+
+.Newsletter {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.Subscribe {
+  width: 146px;
+  height: 36px;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+
+}
+
+.no-border {
+  border: none !important;
+}
+
+.delivering-serch-box-box-container {
+  width: 267px;
+  height: 47px;
+  color: #482607;
+}
+
+.location-icon-containerr {
+  width: 67px;
+  height: 47px;
+}
+
+.no-border-radius {
+  border-radius: 0 !important;
+}
+
+
+.Subscribe-bg-color-container {
+  width: 1445px;
+  height: 197px;
+}
+
+.individual-haldi-powder-one {
+  position: relative;
+  width: 418px !important;
+  height: 560px !important;
+  border-radius: 15px;
+  /* border: 1px solid black; */
+  overflow: hidden;
+  /* Hide overflow from child elements */
+
+  /* Centering the element */
+  margin: 0 auto;
+}
+
+@media (max-width: 325px) {
+
+
+  .individual-haldi-powder-one {
+    position: relative;
+    width: 265px !important;
+    height: 317px !important;
+    border-radius: 15px;
+    /* border: 1px solid black; */
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .overlay-text {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    color: black;
+    /* background: rgba(0, 0, 0, 0.5); */
+    padding: 10px;
+  }
+}
+
+
+
+
+.overlay-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: black;
+  padding: 10px;
+}
+
+.anit-inflflammatory-heading-below-second,
+.potential-cancer-heading-below-second,
+.antioxidant-inflflammatory-heading-below-second,
+.improve-digestive-heading-below-second {
+  background-color: #77C712;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  /* spacing between paragraphs */
+}
+
+@media (max-width: 768px) {
+  .overlay-text {
+    position: static;
+    /* reset position */
+    text-align: center;
+    /* center align text */
+  }
+
+  .powder-second-slider-below-heading {
+    margin-top: 10px;
+    /* add margin to separate headings */
+  }
+
+  .anit-inflflammatory-heading-below-second,
+  .potential-cancer-heading-below-second,
+  .antioxidant-inflflammatory-heading-below-second,
+  .improve-digestive-heading-below-second {
+    width: auto;
+    /* auto width */
+  }
+}
+
+
+
+
+
+}
+
+.individual-haldi-powder-one::before {
+  content: '';
+  position: absolute;
+  width: calc(100% - 2px);
+  /* Adjusted for border width */
+  height: 1px;
+  background-color: black;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.turmeric-heading-1 {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 32px;
+  color: #482607;
+
+}
+
+.stat-top {
+  width: 20px;
+  height: 20px;
+  color: #FFC907;
+}
+
+.btn-button-one {
+  width: 126px;
+  height: 40px;
+  background-color: #77C712;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Archivo;
+  border: none;
+}
+
+.img-fluid-turmeric {
+  width: 100%;
+}
+
+.btn-button-two {
+  width: 126px;
+  height: 40px;
+
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Archivo;
+}
+
+.mrp-all-taxes {
+  font-family: Archivo;
+  font-size: 14px;
+  font-weight: 400;
+  color: #482607;
+
+}
+
+.price-singn-top {
+  font-family: Archivo;
+  font-size: 40px;
+  font-weight: 400;
+  color: #77C712;
+}
+
+.counter-container-min-plus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100px;  */
+  width: 101px;
+  /* height: 26px; */
+  color: #001026;
+  font-size: 14px;
+  font-weight: 200;
+  font-family: Outfit;
+  /* display: inline-block; */
+  padding: 4px;
+  border: 2px solid #482607;
+  /* You can change the color and width as needed */
+  border-radius: 3px;
+  /* Optional: to give rounded corners */
+}
+
+.btn-plus {
+  border: none;
+  background-color: none;
+}
+
+.btn-minus {
+  border: none;
+  background-color: none;
+}
+
+.btn-add {
+  width: 100%;
+  height: 51px;
+  color: 51px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #482607;
+
+
+
+}
+
+.custom-footer-bg {
+  background-color: #fbeaca;
+}
+
+.green-heart {
+  width: 44px;
+  height: 44px;
+}
+
+.btn-buy-now-top {
+  width: 386px;
+  height: 51px;
+  border: 1px solid #77C712;
+}
+
+.green-heart {
+  width: 67px;
+  height: 51px;
+  border: 1px solid #77C712;
+}
+
+.delivery {
+  width: 220px;
+  height: 47px;
+}
+
+.all-cross-india {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+
+}
+
+.free-shipping-img-1 {
+  width: 24px;
+  height: 24px;
+}
+
+.free-shipping-img-2 {
+  width: 25px;
+  height: 26.07px;
+}
+
+.free-shipping-img-3 {
+  width: 26px;
+  height: 26.07px;
+}
+
+.free-shipping-elements-1 {
+  width: 87px;
+  height: 12px;
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 400;
+  text-align: end;
+}
+
+.free-shipping-elements-2 {
+  width: 87px;
+  height: 12px;
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 400;
+  text-align: end;
+}
+
+.free-shipping-elements-3 {
+  width: 87px;
+  height: 12px;
+  font-family: Roboto;
+  font-size: 10px;
+  font-weight: 400;
+  text-align: end;
+}
+
+.key-benefits {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  color: #482607;
+}
+
+.anti-btn-6 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 240px;
+  height: 38px;
+  color: #FFFFFF;
+}
+
+.anti-btn-5 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 240px;
+  height: 38px;
+  color: #FFFFFF;
+}
+
+.anti-btn-4 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 240px;
+  height: 38px;
+  color: #FFFFFF;
+}
+
+.anti-btn-3 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 240px;
+  height: 38px;
+  color: #FFFFFF;
+
+}
+
+.anti-btn-2 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 240px;
+  height: 38px;
+  color: #FFFFFF;
+
+}
+
+.anti-btn-1 {
+  border: none;
+  font-family: Archivo;
+  font-weight: 500;
+  font-size: 18px;
+  width: 298px;
+  height: 38px;
+  color: #FFFFFF;
+
+}
+
+.card-size {
+  height: 373px;
+  width: 100%;
+  background-color: #F4F4F4;
+  border: none;
+}
+
+.centered-paragraph {
+  color: #001026  ;
+  font-size: 18px;
+  /* width: 978px; */
+  margin: 0 auto;
+  text-align: justify;
+  /* Optional: for justified text alignment */
+  padding: 20px;
+  /* Optional: to add some padding */
+}
+
+.product-description {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 24px;
+  width: 223px;
+  height: 28px;
+  color: #482607 !important;
+}
+
+.nav-link {
+  color: #482607 !important;
+}
+
+.discover-customers {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 24px;
+  color: #482607;
+  text-align: center;
+}
+
+.carousel {
+  position: relative;
+}
+
+.reviews-left,
+.reviews-right {
+  position: absolute;
+  top: 0;
+  /* Adjust the positioning */
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.reviews-left {
+  left: -80px;
+  /* Adjust as needed */
+}
+
+.reviews-right {
+  right: -80px;
+  /* Adjust as needed */
+}
+
+.btn-ten-reviews {
+  border: none;
+  background-color: transparent;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 24px;
+  color: #77C712;
+}
+
+.btn-write-reviews {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 24px !important;
+  color: #FFFFFF;
+  border: none;
+  background-color: #482607;
+  /* width: 199px; */
+  /* height: 51px; */
+}
+
+.discover-customer-powder {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 24px;
+  color: #482607;
+}
+
+.custom-stars span {
+
+  height: 18px;
+  /* Set the desired height */
+  width: 19px;
+  /* Set the desired width */
+  color: #FFC907;
+  /* Gold color for stars */
+}
+
+.sliderfirst-heading-1 {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+}
+
+.sliderfirst-heading-2 {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+}
+
+.sliderfirst-heading-3 {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+}
+
+.sliderfirst-heading-4 {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
+}
+
+.card-text {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.card-date {
+  font-family: Archivo;
+  font-weight: 100;
+  font-size: 10px;
+  color: #000000;
+}
+
+.left-arrow {
+  width: 49px;
+  height: 49px;
+  margin-left: -93px;
+  /* Adjust this value as needed */
+}
+
+.right-arrow {
+  width: 49px;
+  height: 49px;
+  margin-right: -93px;
+  /* Adjust this value as needed */
+}
+
+.turmeric-second-slider-below-heading {
+  font-family: Archivo;
+  font-weight: 700;
+  font-size: 64px;
+  color: #CB7E13;
+}
+
+.powder-second-slider-below-heading {
+  font-family: Archivo;
+  font-weight: 900;
+  font-size: 64px;
+  color: #482607;
+  margin-left: 127px;
+}
+
+.green-heart-container {
+  padding-left: 14px;
+}
+
+.anit-inflflammatory-heading-below-second,
+.potential-cancer-heading-below-second {
+  background-color: #77C712;
+  width: 508px;
+  height: 56px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Adjust width of .antioxidant-inflflammatory-heading-below-second as it was different */
+.antioxidant-inflflammatory-heading-below-second {
+  width: 497px;
+  height: 56px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #77C712;
+}
+
+.improve-digestive-heading-below-second {
+  width: 497px;
+  height: 56px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #77C712;
+}
+
+.whats-img {
+  width: 227px !important;
+  ;
+  height: 430px !important;
+}
+
+
+
+
+.card-spacing {
+  margin-right: 15px;
+  border: none;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: -30px;
+  /* Adjust space between the dots and the slider */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: gray;
+  border-radius: 50%;
+  border: none;
+}
+
+.carousel-indicators .active {
+  background-color: darkgray;
+  width: 7px;
+  height: 7px;
+}

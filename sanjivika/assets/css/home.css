@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap');
+
+
+
+
+
+.marquee-tag{
+    background:#77c712;
+    color:white;
+    height:100%;
+}
+
+
+.first-section {
+  margin-top: -1.23rem;
+}
+
+.rounded-circle {
+  width: 22px;
+  height: 22px;
+  background-color: #D9D9D9;
+
+}
+
+.need-face-wash-container {
+  height: 38vhvh;
+}
+
+.header-logo {
+  width: 209px;
+  height: 134px;
+}
+
+.health-care-images {
+  width: 127px;
+  height: 146px;
+}
+
+.brahmi-juices-btn {
+  border-radius: none;
+}
+
+.custom-footer-bg {
+  background-color: #fbeaca;
+}
+
+.hair-oil {
+  width: 100%;
+  height: 100vh;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.health-care-images {
+  width: 127px;
+  height: 146px;
+}
+
+.samisha-march-images {
+  /* width: 168px !important;
+  height: 207px !important;
+  ; */
+}
+
+.health-care-btn-1 {
+  /* width: 195px !important;
+  height: 54px !important; */
+  font-family: Archivo !important;
+  width: 400 !important;
+  /* font-size: 22px !important; */
+  padding: 15px;
+  width: 100;
+  background-color: transparent;
+  /* Make background transparent */
+  border: 1px solid #000000;
+}
+
+.container-section-two button {
+  width: 13rem;
+}
+
+.health-care-btn-2 {
+  /* width: 197px !important;
+  height: 54px !important; */
+  font-family: Archivo !important;
+  /* width: 700 !important;
+  font-size: 22px !important; */
+  padding: 15px;
+  background-color: transparent;
+  /* Make background transparent */
+  border: 1px solid #000000;
+}
+
+.health-care-btn-3 {
+  /* width: 243px !important;
+  height: 54px !important; */
+  font-family: Archivo !important;
+  /* width: 700 !important; */
+  /* font-size: 22px !important; */
+  padding: 15px;
+  background-color: transparent;
+  /* Make background transparent */
+  border: 1px solid #000000;
+}
+
+.health-care-btn-4 {
+  /* width: 159px !important;
+
+  height: 54px !important; */
+  padding: 15px;
+  font-family: Archivo !important;
+  /* font-size: 22px !important; */
+  background-color: transparent;
+  border: 1px solid #000000;
+
+}
+
+.product-card {
+  height: auto;
+  width: 200px;
+  border: none;
+}
+
+.img-container {
+  /* width: 100%; */
+  height: 220px;
+  /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sirums {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.health-care-btn-5 {
+  padding: 15px;
+  /* width: 225px !important;
+  height: 54px !important; */
+  font-family: Archivo !important;
+  /* width: 700 !important; */
+  /* font-size: 22px !important; */
+  background-color: transparent;
+  /* Make background transparent */
+  border: 1px solid #000000;
+}
+
+.health-care-btn-1:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.health-care-btn-2:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.health-care-btn-3:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.health-care-btn-4:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.health-care-btn-4:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.health-care-btn-5:hover {
+  background-color: #77C712;
+  color: white;
+}
+
+.Add-to-cart-4 {
+  width: 127px !important;
+  height: 30px !important;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: 18px !important;
+}
+
+.Add-to-cart-3 {
+  width: 127px;
+  height: 30px;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: 18px !important;
+}
+
+.Add-to-cart-2 {
+  width: 127px;
+  height: 30px;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: 18px !important;
+}
+
+.Add-to-cart-1 {
+  width: 127px;
+  height: 30px;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: 18px !important;
+}
+
+.rupees-num {
+  /* width: 36px !important; */
+  height: 22px !important;
+  font-family: Archivo !important;
+  font-weight: 700 !important;
+  font-family: 20px !important;
+}
+
+.neem-face {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px !important;
+
+}
+
+.herbal-tea,
+.arogya-amrit {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px !important;
+
+}
+
+.keshwardhna-herbal-shampoo {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px !important;
+}
+
+.dant-shuddhi-tooth-past-100gm {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px !important;
+}
+
+.neem-gel {
+  width: 297px;
+  height: 297px;
+}
+
+.neem-gel-2 {
+  width: 175px;
+  height: 235px;
+}
+
+.neem-gel-3 {
+  width: 122px;
+  height: 294px;
+}
+
+.neem-gel-4 {
+  width: 258px;
+  height: 235px;
+}
+
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item>div {
+    display: none;
+  }
+
+  .carousel-inner .carousel-item>div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-start,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+  // transition-duration: 10s;
+}
+
+/* display 4 */
+@media (min-width: 768px) {
+
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next,
+  .carousel-item-next:not(.carousel-item-start) {
+    transform: translateX(25%) !important;
+  }
+
+  .carousel-inner .carousel-item-left.active,
+  .carousel-item-prev:not(.carousel-item-end),
+  .active.carousel-item-start,
+  .carousel-item-prev:not(.carousel-item-end) {
+    transform: translateX(-25%) !important;
+  }
+
+  .carousel-item-next.carousel-item-start,
+  .active.carousel-item-end {
+    transform: translateX(0) !important;
+  }
+
+  .carousel-inner .carousel-item-prev,
+  .carousel-item-prev:not(.carousel-item-end) {
+    transform: translateX(-25%) !important;
+  }
+}
+
+.sirums {
+  width: 100px;
+  height: 331px;
+}
+
+.brahmi-uices-2,
+.brahmi-uices-1 {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+
+
+}
+
+.brahmi-juices-btn {
+  width: 127px;
+  height: 30px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #77C712;
+  border: none;
+}
+
+.green-subscribe-btn {
+  height: 36px;
+  background-color: #77C712;
+  color: #000000;
+  border: none;
+  width: 146px;
+}
+
+.Subscribe-bg-color {
+  width: 320px;
+  height: 51px;
+}
+
+.padding-right-edge-container {
+  padding: 0 !important;
+  width: 98vw !important;
+}
+
+
+.sanjiva-masal-banner {
+  width: 100%;
+  height: 100%;
+}
+
+.leave-img {
+  width: 59px;
+  height: 92px;
+}
+
+.Best-sellers {
+  font-size: 24px;
+  font-family: Roboto;
+  font-weight: 700;
+}
+
+.seasonal {
+  font-size: 24px;
+  font-family: Roboto;
+  font-weight: 700;
+}
+
+.Sanjeevika {
+  font-family: Archivo;
+  font-weight: 700;
+  font-size: 64px;
+  width: 625px;
+}
+
+.aronotic-container {
+  position: absolute;
+  /* top: 0; */
+  right: 0;
+  padding: 20px;
+}
+
+.aromatic,
+.tale-of-rich {
+  font-family: Roboto;
+  font-weight: 400;
+  align-items: right;
+  font-size: 36px;
+
+
+}
+
+.btn-three-four {
+  background-color: #FFFFFF;
+  height: 49px;
+  width: 288px;
+  font-weight: 700;
+  font-family: Archivo;
+  /* font-size: 20px; */
+}
+
+.get-upadtes {
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.Newsletter {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.Subscribe {
+  width: 146px;
+  height: 36px;
+  background-color: #77C712;
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 20px;
+
+}
+
+.Subscribe-bg-color-container {
+  width: 1445px;
+  height: 197px;
+}
+
+.amla-aloe-image {
+  /* width: 1444px;
+  height: 684px; */
+  height: 100vh;
+}
+
+.wholesome-heading-1 {
+  font-family: Archivo;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 69.63px;
+  text-align: left;
+
+}
+
+.wholesome-heading-2 {
+  font-family: Archivo;
+  font-weight: 700;
+  font-size: 64px;
+}
+
+.wholesome-heading-3 {
+  font-family: Roboto;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 56.25px;
+  /* text-align: center; */
+
+}
+
+.wholesome-heading-4 {
+  font-family: Roboto;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 42.19px;
+  text-align: left;
+  color: #000000;
+}
+
+.wholesome-heading-5 {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.shop-now-1 {
+  width: 159px;
+  height: 38px;
+  font-family: Archivo;
+  font-weight: 400;
+  font-size: 24px;
+  background-color: #482607;
+  color: #FFFFFF;
+}
+
+.personal-care {
+  /* height: 28px; */
+  /* width: 152px; */
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 24px;
+  background-color: #482607;
+}
+
+.hair-care {
+  /* height: 51px;
+    width:320px ;
+    
+    font-weight:700 ;
+    font-size: 24px; */
+  background-color: #482607;
+  font-family: Roboto;
+}
+
+.btn-three-four {
+  width: 222px;
+  height: 50px;
+}
+
+.facewashes {
+  height: 179px;
+  width: 385px;
+}
+
+.brown-width-contaner {
+  width: 320px;
+  height: 51px;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.mobile-view {
+  display: none;
+}
+
+
+
+
+
+
+
+.product-card {
+  margin-bottom: 20px;
+}
+
+.product-image-container {
+  width: 200px;
+  /* Set the desired width */
+  height: 300px;
+  /* Set the desired height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+  /* Center the container horizontally */
+}
+
+.product-image-container img {
+  height: 100%;
+  /* Ensure the image height fills the container */
+  width: 100%;
+  /* Ensure the image width fills the container */
+  /* object-fit: cover; Maintain aspect ratio and cover container */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.red-icon {
+  color: red;
+  /* background-color: red; */
+}
+
+.search-form-top {
+  display: block;
+}
+
+.phone-pay-icon {
+  width: 180px;
+  height: 97px;
+  margin-right: -68px;
+}
+
+.phone-pay-icon-2 {
+  width: 222px;
+  height: 93px;
+  margin-right: -68px;
+}
+
+.phone-pay-icon-3 {
+  width: 218px;
+  height: 70px;
+  margin-top: 10px;
+}
+
+.sanjeevika-masala {
+  text-transform: capitalize;
+  font-family: Archivo;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 69.63px;
+  /* text-align: left; */
+  color: #482607 !important;
+}
+
+@media (max-width: 768px) {
+  .wholesome-heading-1 {
+    font-size: 1.5rem;
+    /* Adjust as needed */
+  }
+
+  .Subscribe-newsletter-container {
+    height: 50vh;
+  }
+
+  .where-every-pinch-container {
+    height: 100vh;
+  }
+
+  .wholesome-heading-2 {
+    font-size: 1.4rem;
+    /* Adjust as needed */
+  }
+
+  .health-care-images {
+    width: 279px;
+    height: 146px;
+  }
+
+  .items-li-toggle-mobile-views {
+    margin-top: 19rem;
+  }
+
+  .dant-shuddhi-tooth-past-100gm {
+    font-family: Archivo;
+    font-weight: 400;
+    font-size: 16px !important;
+  }
+
+  .myCarousel {
+    padding: 0;
+    padding: 0;
+  }
+
+  .rounded-circle {
+    width: 16px !important;
+    height: 16px !important;
+    background-color: #D9D9D9;
+  }
+
+  .wholesome-heading-3 {
+    font-size: 1.2rem;
+    /* Adjust as needed */
+  }
+
+  .wholesome-heading-4 {
+    font-size: 1.1rem;
+    /* Adjust as needed */
+  }
+
+  .wholesome-heading-5 {
+    font-size: 1rem;
+    /* Adjust as needed */
+  }
+
+  .shop-now-1 {
+    font-size: 0.9rem;
+    /* Adjust as needed */
+  }
+
+  .navbar-collapse collapse show,
+  .navbar-expand .navbar-nav {
+    /* display: none; */
+  }
+
+  .shopping-cart-top-display {
+    display: none;
+  }
+
+  .sanjeevika-masala {
+    font-size: 1.5rem;
+    /* Adjust the size as needed */
+  }
+
+  .facewashes {
+    width: auto !important;
+  }
+
+  .tale-of-rich,
+  .aromatic {
+    font-size: 0.8rem;
+    /* Adjust the size as needed */
+  }
+
+  /* .navbar-expand .navbar-nav{
+    display: flex !important;
+  } */
+  .shopping-cart-top-diplay {
+    display: none;
+  }
+
+  .header-logo {
+    height: 12vh;
+    width: 34vw;
+    margin-left: 0px;
+    margin-top: -14px !important;
+  }
+
+  .toggle-space-top-remove {
+    height: 12vh !important;
+  }
+
+  .desktop-none navbar-expand-lg navbar-light bg-light {
+    display: none !important;
+  }
+
+  /* .remove-extra{
+width: 3vw;
+  } */
+  .navbar-expand .navbar-nav {
+    /* flex-direction: column !important; */
+    justify-content: center !important;
+  }
+
+  .track-home-icon {
+    display: none !important;
+  }
+
+  .track-order {
+    display: none !important;
+  }
+
+  .text-center-mobile {
+    text-align: center;
+  }
+
+  .text-center-mobile {
+    text-align: center;
+  }
+
+  .mobile-images {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .toggle-icon-left {
+    justify-content: flex-end !important;
+  }
+
+  .bg-light {
+    background-color: transparent !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 325px) {
+  .hair-oil {
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+    margin-top: 18px !important;
+  }
+}

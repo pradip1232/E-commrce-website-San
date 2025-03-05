@@ -1,0 +1,94 @@
+.pharmacy-img{
+    width: 100vw;
+}
+.custom-footer-bg {
+    background-color: #fbeaca;
+}
+.store-first-container, .store-first-container-2, .store-first-container-3, .store-first-container-4 {
+    width: 286px;
+    height: 234px;
+    background-color: #F4F4F4;
+    margin: 10px; /* Adding some margin to create space between columns */
+}
+.store-bottom-heading, .store-bottom-heading-2 {
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-3{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-4{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-5{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-6{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-7{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.store-bottom-heading-8{
+    font-family: Archivo;
+    font-weight: 400;
+    /* font-size: 18px; */
+    margin: 0; /* Ensure no extra margin */
+}
+.border-none{
+    border: none;
+}
+.btn-contact-form{
+    background-color: #482607;
+    border: none;
+    width: 109px;
+    height:51px ;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 24px;
+}
+.lets-talk-blur{
+    font-size:32px ;
+    font-family: Roboto;
+    font-weight: 700;
+    color: #77C712;
+}
+.keep-connected{
+    font-size:24px ;
+    font-family: Roboto;
+    font-weight: 600;
+    color: #482607;
+}
+.row.mb-1 {
+    margin-bottom: 0.5rem; /* Adjust this value as needed */
+}
+.form-control.mb-1 {
+    margin-bottom: 0.5rem; /* Adjust this value as needed */
+}
+.col-form-label.mb-0 {
+    margin-bottom: 0; /* Ensures no extra margin on labels */
+}
+.btn-contact-form {
+    margin-top: 0.5rem; /* Adjust spacing above the button */
+}
+.col-sm-3{
+    
+}

@@ -1,0 +1,53 @@
+{
+    "healthcare": [
+        { "id": 1, "title": "Health Care Item 1", "image": "assets/images/haircare2.png", "description": "Description 1", "price": 100},
+        { "id": 2, "title": "Health Care Item 2", "image": "assets/images/haircare3.png", "description": "Description 2" , "price": 100},
+        { "id": 3, "title": "Health Care Item 3", "image": "assets/images/haircare4.png", "description": "Description 3" , "price": 100},
+        { "id": 31, "title": "Health Care Item 4", "image": "assets/images/haircare4.png", "description": "Description 31", "price": 135 }
+    ],
+    "healthsupplements": [
+        { "id": 4, "title": "Supplement Item 1", "image": "assets/images/haircare5.png", "description": "Description 4" , "price": 100},
+        { "id": 5, "title": "Supplement Item 2", "image": "assets/images/haircare5.png", "description": "Description 5" , "price": 100},
+        { "id": 6, "title": "Supplement Item 3", "image": "assets/images/haircare7.png", "description": "Description 6" , "price": 100}
+    ],
+    "beverages": [
+        { "id": 7, "title": "Beverage Item 1", "image": "assets/images/haircare8.png", "description": "Description 7", "price": 100 },
+        { "id": 8, "title": "Beverage Item 2", "image": "assets/images/haircare9.png", "description": "Description 8" , "price": 100},
+        { "id": 9, "title": "Beverage Item 3", "image": "assets/images/haircare10.png", "description": "Description 9" , "price": 100}
+    ],
+    "personalcare": [
+        { "id": 10, "title": "Personal Care Item 1", "image": "assets/images/haircare11.png", "description": "Description 10" , "price": 100},
+        { "id": 11, "title": "Personal Care Item 2", "image": "assets/images/haircare11.png", "description": "Description 11", "price": 100 },
+        { "id": 12, "title": "Personal Care Item 3", "image": "assets/images/haircare12.png", "description": "Description 12" , "price": 100}
+    ],
+    "haircare": [
+        { "id": 13, "title": "Hair Care Item 1", "image": "assets/images/haircare2.png", "description": "Description 13" , "price": 100},
+        { "id": 14, "title": "Hair Care Item 2", "image": "assets/images/haircare2.png", "description": "Description 14", "price": 100 },
+        { "id": 15, "title": "Hair Care Item 3", "image": "assets/images/haircare2.png", "description": "Description 15" , "price": 100}
+    ],
+    "oralcare": [
+        { "id": 16, "title": "Oral Care Item 1", "image": "assets/images/haircare2.png", "description": "Description 16" , "price": 100},
+        { "id": 17, "title": "Oral Care Item 2", "image": "assets/images/haircare2.png", "description": "Description 17" , "price": 100},
+        { "id": 18, "title": "Oral Care Item 3", "image": "assets/images/haircare17.png", "description": "Description 18", "price": 100 }
+    ],
+    "skincare": [
+        { "id": 19, "title": "Skin Care Item 1", "image": "assets/images/haircare11.png", "description": "Description 19", "price": 100 },
+        { "id": 20, "title": "Skin Care Item 2", "image": "assets/images/haircare11.png", "description": "Description 20" , "price": 100},
+        { "id": 21, "title": "Skin Care Item 3", "image": "assets/images/haircare11.png", "description": "Description 21" , "price": 100}
+    ],
+    "ayurvedicmedicines": [
+        { "id": 22, "title": "Ayurvedic Medicine Item 1", "image": "assets/images/haircare11.png", "description": "Description 22" , "price": 100},
+        { "id": 23, "title": "Ayurvedic Medicine Item 2", "image": "assets/images/haircare11.png", "description": "Description 23" , "price": 100},
+        { "id": 24, "title": "Ayurvedic Medicine Item 3", "image": "assets/images/haircare11.png", "description": "Description 24" , "price": 100}
+    ],
+    "classicmedicines": [
+        { "id": 25, "title": "Classic Medicine Item 1", "image": "assets/images/haircare11.png", "description": "Description 25" , "price": 100},
+        { "id": 26, "title": "Classic Medicine Item 2", "image": "assets/images/haircare11.png", "description": "Description 26" , "price": 100},
+        { "id": 27, "title": "Classic Medicine Item 3", "image": "assets/images/haircare11.png", "description": "Description 27", "price": 100 }
+    ],
+    "patentmedicines": [
+        { "id": 28, "title": "Patent Medicine Item 1", "image": "assets/images/haircare11.png", "description": "Description 28", "price": 100 },
+        { "id": 29, "title": "Patent Medicine Item 2", "image": "assets/images/haircare11.png", "description": "Description 29" , "price": 100},
+        { "id": 30, "title": "Patent Medicine Item 3", "image": "assets/images/haircare11.png", "description": "Description 30", "price": 100 }
+    ]
+}

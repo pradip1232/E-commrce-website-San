@@ -1,0 +1,218 @@
+.about-us-top-heading-page {
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 37.5px;
+    text-align: center;
+
+    color: #482607 !important;
+}
+
+.ayurbeda {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    text-align: center;
+    color: #482607 !important;
+}
+
+.position-relative-about-us-page,
+.position-relative-about-us-page p {
+    font-family: Archivo;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    color:
+        #001026;
+}
+
+.left-space-remove-paragraph p {
+    font-family: Archivo, sans-serif;
+    /* Specify Archivo as the preferred font family */
+    font-size: 18px;
+    /* Set the font size to 18 pixels */
+    font-weight: 400;
+    /* Set the font weight to normal (400) */
+    line-height: 27px;
+    /* Set the line height to 27 pixels */
+    text-align: left;
+    /* Align text to the left */
+
+    color: #001026;
+}
+
+.left-space-remove-paragraph h6 {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    text-align: left;
+    color: #482607;
+}
+
+.image-text-container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    /* Adjust width as needed */
+    /* background-color: rgba(0, 0, 0, 0.7); Semi-transparent background */
+    padding: 20px;
+    text-align: center;
+}
+
+.image-text {
+
+    font-family: 'Archivo', sans-serif;
+    /* Example of using custom font-family */
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.vision-about {
+    color:
+        #482607;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    text-align: center;
+
+}
+
+.house-images {
+    height: 98vh;
+    width: 100%;
+}
+
+
+.abut-page-logo-right-text p {
+    font-family: Archivo;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: right;
+    color: #001026;
+}
+
+.logo {
+    width: 239px;
+    height: 154px;
+}
+
+.adipiscing-img {
+    width: 396px;
+    height: 278px;
+}
+
+.img-fluid-5 {
+    width: 100vw;
+    height: 586px;
+    margin-top: -32px;
+}
+
+.img-fluid-cinamon {
+    margin-top: -120px;
+}
+
+.img-fluid-2 {
+    width: 453px;
+    height: 295px;
+}
+
+.img-fluid-3 {
+    width: 342px;
+    height: 220px;
+}
+
+.custom-footer-bg {
+    background-color: #fbeaca;
+}
+
+.cinamon-image {
+    width: 100vw;
+    height: 586px;
+    margin-top: -21px !important;
+}
+
+.position-realative-about-us-page {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+@media (max-width: 768px) {
+
+    /* Adjust max-width as needed for your breakpoint */
+    .img-fluid-2 {
+        width: 80%;
+        /* Example width for mobile view */
+        height: auto;
+    }
+
+    .mobile-responsive-img {
+        width: 50% !important;
+        /* Example width for mobile view */
+        height: auto !important;
+        /* Maintain aspect ratio */
+    }
+
+    .mobile-views-column {
+        flex-direction: column-reverse;
+    }
+
+    .sanjika-about-text-center-in-mobile {
+        width: 70vw;
+    }
+
+    .sanjivika-image-text-remove-margin-left {
+        margin-left: 0 !important;
+    }
+
+    .second-section-container-left-space-remove {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+
+    }
+
+    .left-space-remove-paragraph {
+        margin-top: 20 !important;
+
+        padding-left: 20px;
+        padding-right: 20px;
+        /* text-align: center; */
+
+    }
+
+    .header-logo {
+        height: 12vh;
+        width: 34vw;
+        margin-left: 0px;
+        margin-top: -14px !important;
+    }
+
+    .about-us-first-section-containe {
+        margin-top: 5rem;
+    }
+
+    .nav-bar-mobile-opacity-nav {
+        text-align: center !important;
+        /* width: 100vw !important; */
+        justify-content: center;
+    }
+
+    /* .nav-2-ui-container{
+        width: 60vw !important;
+    } */
+    hr {
+        height: 1vh;
+        color: black;
+        padding: 0 !important;
+    }
+
+
+
+
+}
