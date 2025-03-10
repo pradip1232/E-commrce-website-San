@@ -44,24 +44,33 @@ include "config/conn.php";
           <div class="card shadow-0 border">
             <div class="p-4">
               <div class="row">
+
                 <?php
+
                 $e = $_SESSION['user_email'];
                 $sql = "SELECT `id`, `name`, `email`, `mobile`, `state`, `country`, `full_add` FROM `user_data` WHERE email = '$e'";
                 $result = $conn->query($sql);
+
                 if ($result->num_rows > 0) {
                   $row = $result->fetch_assoc();
                   $n = htmlspecialchars($row['name']);
                   $m = htmlspecialchars($row['mobile']);
-                  $addresses = json_decode($row['full_add'], true);
 
-                  // Check if addresses is an array, otherwise set it to an empty array
-                  if (!is_array($addresses)) {
+                  // Check if full_add is not empty and valid JSON
+                  if (!empty($row['full_add']) && is_string($row['full_add'])) {
+                    $addresses = json_decode($row['full_add'], true);
+
+                    // If decoding fails, set to empty array
+                    if (!is_array($addresses)) {
+                      $addresses = [];
+                    }
+                  } else {
                     $addresses = [];
                   }
                 } else {
-                  // If no user is found, set addresses to an empty array
                   $addresses = [];
                 }
+
                 ?>
                 <div class="col-12 mb-3">
                   <p class="mb-0">Full name</p>

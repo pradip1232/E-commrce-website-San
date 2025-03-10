@@ -17,9 +17,11 @@ ini_set('display_startup_errors', 1);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Retrieve and sanitize input
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-
+    // $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    // $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
     if (empty($email) || empty($password)) {
         echo json_encode(["success" => false, "message" => "Please provide both email and password."]);
         exit();
@@ -51,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "success" => true,
                 "message" => "Login successful.",
                 "email" => $email,
-               
+
                 "redirect_url" => $redirect_url,
             ]);
             exit();
@@ -76,4 +78,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Close the database connection
 $conn->close();
-?>

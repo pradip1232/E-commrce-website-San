@@ -28,3 +28,28 @@ echo "<p><strong>Landmark:</strong> $addressLandmark</p>";
 echo "<p><strong>City:</strong> $addressCity</p>";
 echo "<p><strong>State:</strong> $addressState</p>";
 echo "<p><strong>Pin Code:</strong> $addressPin</p>";
+
+include "config/send_email_pay.php";
+sendConfirmationEmail($name, $email, $mobile);
+
+
+?>
+
+<button id="payButton" class="btn btn-success">Pay</button>
+
+<script>
+    document.getElementById("payButton").addEventListener("click", function() {
+        fetch("config/send_email_pay.php", {
+                method: "POST",
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Payment successful! Email sent.");
+                } else {
+                    alert("Payment failed! " + data.message);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    });
+</script>

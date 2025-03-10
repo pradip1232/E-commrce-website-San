@@ -5,31 +5,84 @@ include "config/conn.php";
 ?>
 
 
-<div class="container  products-details-page">
-    <div class="container">
-        <div class="row  text-center text-align-center">
+<style>
+    .btn-group button {
+        margin-right: 5px;
+    }
+</style>
 
-            <h6 class=" ">Tags:</h6>
-            <div class="d-flex flex-wrap mb-5"> hello
-                <!-- <?php
-                        // $selectedTags = json_decode($productDetails["selected_tags"], true);
-                        // if (is_array($selectedTags)) {
-                        //     foreach ($selectedTags as $tag) {
-                        //         echo '<button class="btn btn-successss m-1" style="background-color:#E8E8E8; cursor:text; color:black;">' . htmlspecialchars($tag) . '</button>';
-                        //     }
-                        // }
-                        ?> -->
-            </div>
-        </div>
-    </div>
+<style>
+    .custom-row-add-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+        .custom-row-add-btn {
+            flex-direction: row;
+        }
+    }
+
+    .custom-col {
+        flex: 1;
+    }
+
+    .custom-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .light-green-btn {
+        background-color: #a8e06f;
+        /* Light Green */
+        color: black;
+    }
+
+    .green-btn {
+        background-color: #4caf50;
+        /* Green */
+        color: white;
+    }
+</style>
 
 
 
+<?php
+$product_id = isset($_GET["id"]) ? trim($_GET["id"]) : null;
+$product_sku = isset($_GET["sku"]) ? trim($_GET["sku"]) : null;
+
+// echo "Product ID Type: " . gettype($product_id) . " | Value: " . htmlspecialchars($product_id) . "<br>";
+// echo "Product SKU Type: " . gettype($product_sku) . " | Value: " . htmlspecialchars($product_sku) . "<br>";
+
+// if (!is_numeric($product_id) || !is_numeric($product_sku)) {
+//     die("<p class='text-danger'>Invalid product ID or SKU.</p>");
+// }
+
+$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ? AND product_sku = ?");
+$stmt->bind_param("ss", $product_id, $product_sku);
+$stmt->execute();
+$result = $stmt->get_result();
+$allproduct = [];
+
+if ($row = $result->fetch_assoc()) {
+    $allproduct = $row;
+} else {
+    echo "<p class='text-danger'>No product found for ID: " . htmlspecialchars($product_id) . "</p>";
+}
+?>
+
+
+
+
+<div class="container-fluid products-details-page">
     <div class="row">
-        <!-- Right Column with Image -->
-        <div class="col-md-6 col-lg-6 col-sm-6 col-10 col-xs-8 position-relative">
-            <!-- <img src="assets/images/Rectangle 5.png" alt="rectangle-border" class="img-fluid">
-            <img src="assets/images/turmeric-power.png" alt="Image" class="individual-haldi-powder-one position-absolute" style="top: 50%; left:50%; transform: translate(-50%, -50%);"> -->
+        <div class="col-md-6 col-lg-6 col-sm-6 col-10 position-relative">
             <div class="row">
                 <!-- Right Column for Large Main Image -->
 
@@ -62,7 +115,7 @@ include "config/conn.php";
 
 
                 <!-- Left Column for Small Image Thumbnails -->
-                <div class="col-md-8 d-flex align-items-center justify-content-center ">
+                <div class="col-md-9 d-flex align-items-center justify-content-center ">
                     <img src="assets/images/Rectangle 5.png" alt="rectangle-border" class="img-fluid">
 
                     <?php
@@ -75,273 +128,185 @@ include "config/conn.php";
                     ?>
                     <img id="main-image" src="assets/images/turmeric-power.png" alt="Main Image" class="img-fluid individual-haldi-powder-one position-absolute">
                 </div>
-
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6">
+            <?php
+            // echo "IDddddd" . $product_id;
+            // print_r($allproduct);
+            ?>
+            <!-- Product Name -->
+            <div class="product-name">
+                <h3 class="turmeric-heading-1"><?php echo htmlspecialchars($row["product_name"]); ?></h3>
             </div>
 
-
-
-
-        </div>
-
-
-        <!-- Left Column -->
-        <div class="col-md-6 col-lg-6 col-sm-6  ">
-            <!-- Heading -->
-            <h3 class="turmeric-heading-1"><?php echo $productDetails["product_name"] ?>
-            </h3>
-            <!-- Four Yellow Stars -->
+            <!-- Star Ratings -->
             <div class="row">
                 <div class="col">
                     <span class="star-icons">
-                        <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                        <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                        <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                        <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                        <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                        <?php for ($i = 0; $i < 5; $i++) : ?>
+                            <img src="assets/images/Star 1 (1).png" alt="Star" class="stat-top" />
+                        <?php endfor; ?>
                     </span>
                 </div>
             </div>
-            <!-- Two Buttons -->
 
+            <!-- Product Packaging Selection -->
+            <?php
+            $product_details = json_decode($row['product_details'], true);
+            $minBatch = null;
+            $minPrice = PHP_INT_MAX;
 
+            foreach ($product_details as $batch => $details) {
+                if ($details['selling_price'] < $minPrice) {
+                    $minPrice = $details['selling_price'];
+                    $minBatch = $batch;
+                }
+            }
 
+            if ($product_details) :
+                echo '<div class="btn-group" role="group" id="packagingOptions">';
 
+                foreach ($product_details as $batch => $details) {
+                    $activeClass = ($batch === $minBatch) ? 'btn-success' : 'btn-outline-secondary';
+                    echo '<button class="btn ' . $activeClass . ' packaging-btn" data-price="' . $details['selling_price'] . '" data-batch="' . $batch . '" onclick="updatePrice(this)">' . $details['packaging'] . '</button>';
+                }
 
+                echo '</div>';
+            ?>
+                <h4 class="mt-3">₹ <span id="productPrice"><?php echo $minPrice; ?></span></h4>
+            <?php endif; ?>
 
-
-
-            <!-- Quantity Counter HTML -->
-            <!-- Quantity Counter HTML -->
+            <!-- Quantity Selector -->
             <div class="row">
                 <div class="col">
                     <div class="counter-container-min-plus">
-                        <button class="btn-minus btn">-</button>
-                        <span class="quantity-display">1</span>
-                        <button class="btn-plus btn">+</button>
+                        <button class="btn-minus btn" onclick="updateQuantity(-1)">-</button>
+                        <span id="quantity-display">1</span>
+                        <button class="btn-plus btn" onclick="updateQuantity(1)">+</button>
                     </div>
                 </div>
             </div>
-            <!-- <p>Total Price: ₹<span class="selling-price-text">0.00</span></p> -->
 
+            <!-- Buy Now & Add to Cart Buttons -->
+            <?php
+            $email = $_SESSION['user_email'] ?? $_COOKIE['user_email'] ?? null;
+            $isLoggedIn = isset($_SESSION['loggedin']);
+            ?>
 
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    let quantity = 1; // Default quantity
-                    const pricePerUnit = parseFloat("<?php echo $minQuantityVariant ? $minQuantityVariant['sellingPrice'] : '0'; ?>"); // Price per unit from PHP
-                    const priceDisplay = document.querySelector(".selling-price-text"); // Total price display element
-                    const quantityDisplay = document.querySelector(".quantity-display"); // Quantity display element
-
-                    // Initial price display update
-                    updatePriceDisplay();
-
-                    // Event listener for the "+" button
-                    document.querySelector(".btn-plus").addEventListener("click", function() {
-                        quantity++; // Increment quantity
-                        quantityDisplay.textContent = quantity; // Update quantity display
-                        updatePriceDisplay(); // Update price
-                    });
-
-                    // Event listener for the "-" button
-                    document.querySelector(".btn-minus").addEventListener("click", function() {
-                        if (quantity > 1) { // Ensure quantity does not go below 1
-                            quantity--; // Decrement quantity
-                            quantityDisplay.textContent = quantity; // Update quantity display
-                            updatePriceDisplay(); // Update price
-                        }
-                    });
-
-                    // Function to update the displayed price based on the current quantity
-                    function updatePriceDisplay() {
-                        const totalPrice = pricePerUnit * quantity; // Calculate total price
-                        priceDisplay.textContent = totalPrice.toFixed(2); // Display total price with 2 decimal places
-                    }
-                });
-            </script>
-
-
-
-            <!-- <div class="row mt-3">
-                <div class="col">
-
-                    <button class="btn-button-one ">100gm</button>
+            <div class="row gap-2 custom-row-add-btn">
+                <div class="col-md-6 custom-col">
+                    <button class="btn light-green-btn w-100">ADD TO CART</button>
                 </div>
-            </div> -->
-            <!-- Heading 2 -->
-            <!-- <p class="mrp-all-taxes mt-3">MRP (includes all taxes)</p> -->
-
-            <!-- Price Icon -->
-            <!-- <div class="row">
-                <div class="col">
-                    <span class="price-singn-top">&#8377;38.00</span>
-
-                </div>
-            </div> -->
-            <!-- Plus/Minus Container -->
-
-            <!-- Big Button -->
-            <div>
-                <div class="row mt-4">
-                    <div class="col-10">
-                        <button class="btn-add">ADD TO CART</button>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-10 text-startgreen-heart  d-flex ">
-
-
-                        <?php
-                        // session_start(); // Start the session
-
-                        // Initialize email variable
-                        $email = null;
-
-                        // Check if email exists in session
-                        if (isset($_SESSION['user_email'])) {
-                            $email = $_SESSION['user_email'];
-                        }
-                        // Check if email exists in cookies
-                        elseif (isset($_COOKIE['user_email'])) {
-                            $email = $_COOKIE['user_email'];
-                        }
-
-
-                        $isLoggedIn = isset($_SESSION['loggedin']); // Check if user is logged in
-                        // echo $isLoggedIn;
-                        // Display the email if found in session or cookie
-                        // if ($email) {
-                        //     echo "User Email (from session or cookie): " . htmlspecialchars($email);
-                        // } else {
-                        //     echo "No email found in session or cookie.";
-                        // }
-                        ?>
-
-
-
-                        <?php
-                        // Debugging the productTax value
-                        // if (isset($minQuantityVariant['productTax'])) {
-                        //     echo "<pre>Debug: Product Tax Value: " . htmlspecialchars($minQuantityVariant['productTax']) . "</pre>";
-                        // } else {
-                        //     echo "<pre>Debug: productTax key does not exist or is null</pre>";
-                        // }
-
-                        // Determine the URL based on whether the user is logged in
-                        if ($isLoggedIn) {
-                            $emailEncoded = urlencode($email);
-                            $price = urlencode($minQuantityVariant['sellingPrice']);
-                            $tax = urlencode($minQuantityVariant['productTax']);
-
-                            $buyNowUrl = "checkout?email={$emailEncoded}&price={$price}&tax={$tax}";
-                        } else {
-                            $buyNowUrl = "login";
-                        }
-
-                        // Output the URL for verification
-                        // echo "<pre>Debug: Genera ted URL: " . htmlspecialchars($buyNowUrl) . "</pre>";
-                        ?>
-
-
-
-                        <button
-                            class="btn-buy-now-top"
-                            onclick="window.location.href='<?php echo $buyNowUrl; ?>'">
-                            BUY NOW
-                        </button>
-                        <div class="green-heart-container ">
-                            <img src="assets/images/Heart (2).png" alt="" class="green-heart ms-3" />
+                <div class="col-md-6 custom-col">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <button class="btn green-btn w-100" onclick="proceedToCheckout()">BUY NOW</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="heart-btn h-100 w-100"><i class="fas fa-heart"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Search Box -->
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="input-group delivering-serch-box-box-container">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white border-right-0 p-0 m-0">
-                                <img src="assets/images/Location.png" alt="location" />
-                            </span>
-                        </div>
-                        <input type="text" class="form-control border-left-0 p-0 m-0 no-border-radius" placeholder="Enter delivery pincode">
-                        <div class="input-group-append location-icon-containerr">
-                            <span class="input-group-text border-left-0 no-border-radius" style="background-color: #77C712; color: #FFFFFF;">Check</span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <p class="text-start mb-3 mt-5 all-cross-india">Delivering all across India</p>
+            <!-- Pincode Input -->
             <div class="row">
-                <div class="col-2">
-                    <div class="text-center">
-                        <img src="assets/images/Location-check.png" alt="" class="free-shipping-img-1" />
-                        <p class="free-shipping-elements-1">Free Shipping</p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="text-center">
-                        <img src="assets/images/Lock.png" alt="" class="free-shipping-img-2" />
-                        <p class="free-shipping-elements-2">Secure Payment</p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="text-center">
-                        <img src="assets/images/Refresh.png" alt="" class="free-shipping-img-3" />
-                        <p class="free-shipping-elements-3">Easy return </p>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-start align-items-center mt-3">
+                        <div class="input-group custom-input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                            <input type="text" class="form-control custom-input" placeholder="Enter Delivery Pincode">
+                        </div>
+                        <button class="btn green-btn ms-2">Check</button>
                     </div>
                 </div>
             </div>
 
-
-
+            <!-- Shipping Details -->
+            <p class="mt-3">Delivering all across India</p>
+            <div class="d-flex justify-content-start gap-4 feature-icons">
+                <div><i class="fas fa-truck"></i><br />Free Shipping</div>
+                <div><i class="fas fa-lock"></i><br />Secure Payment</div>
+                <div><i class="fas fa-undo"></i><br />Easy Return</div>
+            </div>
         </div>
+
+        <!-- JavaScript -->
+        <script>
+            let selectedPrice = <?php echo $minPrice; ?>;
+            let selectedBatch = "<?php echo $minBatch; ?>";
+            let quantity = 1;
+
+            function updatePrice(element) {
+                document.querySelectorAll('.packaging-btn').forEach(btn => btn.classList.remove('btn-success'));
+                element.classList.add('btn-success');
+
+                selectedPrice = element.getAttribute('data-price');
+                selectedBatch = element.getAttribute('data-batch');
+                document.getElementById('productPrice').innerText = selectedPrice;
+            }
+
+            function updateQuantity(value) {
+                quantity = Math.max(1, quantity + value);
+                document.getElementById('quantity-display').innerText = quantity;
+            }
+
+            function proceedToCheckout() {
+                let email = "<?php echo $email; ?>";
+                let checkoutUrl = "<?php echo $isLoggedIn ? 'checkout' : 'login'; ?>";
+
+                if (checkoutUrl === "checkout") {
+                    checkoutUrl += `?email=${encodeURIComponent(email)}&price=${selectedPrice}&quantity=${quantity}&batch=${selectedBatch}`;
+                }
+
+                window.location.href = checkoutUrl;
+            }
+        </script>
+
     </div>
-
-
 
 </div>
 
-<div class="container mt-3 pt-5 ">
-    <h2 class="text-center key-benefits mb-3 pb-1">Key Benefit</h2>
 
-    <!-- Row for the first six cards -->
-    <div class="row card-wrapper">
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Anti-inflammatory</p>
-            </div>
-        </div>
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Rich in Antioxidants</p>
-            </div>
-        </div>
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Support Digestive Health</p>
-            </div>
-        </div>
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Boost Immunity</p>
-            </div>
-        </div>
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Support Digestive Health</p>
-            </div>
-        </div>
-        <div class="card btn-anti" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">Boost Immunity</p>
-            </div>
-        </div>
-    </div>
-</div>
+
+<script>
+    function updatePrice(button) {
+        // Remove active class from all buttons
+        document.querySelectorAll("#packagingOptions button").forEach(btn => {
+            btn.classList.remove("btn-success");
+            btn.classList.add("btn-outline-secondary");
+        });
+
+        // Add active class to the selected button
+        button.classList.remove("btn-outline-secondary");
+        button.classList.add("btn-success");
+
+        // Update the price
+        document.getElementById("productPrice").innerText = button.getAttribute("data-price");
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

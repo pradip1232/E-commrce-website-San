@@ -146,17 +146,53 @@ foreach ($categories as $category) {
             ?>
             <div class="col-md-9 ooffset-md-3">
                 <div class="row" id="productContainer">
+                    <?php
+                    // Debugging: Print product array
+                    // print_r($products);
+                    ?>
 
-                    <?php foreach ($products as $product) { ?>
+                    <?php foreach ($products as $product) {
+                        if (!empty($product['product_details']) && $product['product_details'] !== null) {
+                            $product_details = json_decode($product['product_details'], true);
+
+                            if (is_array($product_details) && !empty($product_details)) {
+                                $prices = array_column($product_details, 'cost_price');
+                                $min_price = !empty($prices) ? min($prices) : 0;
+
+                                $pp = array_column($product_details, 'packaging');
+                                $min_pp = !empty($pp) ? min($pp) : 0;
+                            } else {
+                                continue;
+                            }
+                        } else {
+                            continue;
+                        }
+                    ?>
+
                         <div class="col-6 col-md-4 col-lg-3 product" data-category="<?= htmlspecialchars($product['product_category']) ?>">
                             <div class="products-card text-center p-3 ">
                                 <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
-                                <h6 class="mt-2"><?= htmlspecialchars($product['product_name']) ?></h6>
-                                <!-- <p class="text-danger fw-bold">&#8377;<?= htmlspecialchars($product['']) ?></p> -->
+                                <h6 class="mt-2" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
+                                    <?= htmlspecialchars($product['product_name']) . " " . htmlspecialchars($min_pp) ?>
+                                </h6>
+                                <p class="text-dangerr fw-boldd">&#8377; <?= htmlspecialchars($min_price) ?></p>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <span class="star-icons">
+                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
+                                        </span>
+                                    </div>
+                                </div>
                                 <button class="btn btn-success">Add to Cart</button>
                             </div>
                         </div>
+
                     <?php } ?>
+
 
 
                 </div>
