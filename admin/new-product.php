@@ -655,12 +655,11 @@ if ($productresult->num_rows > 0) {
                     </div>
                     <!-- offers -->
                     <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <label for="offers" class="form-label">Offers % (Optional)</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="offers" name="offers" placeholder="Enter the offers: 10, 15 %">
-                                <select class="form-select" id="unit" name="unit" required style="max-width: 150px;">
+                                <select class="form-select" id="unit_offer" name="unit_offer" required style="max-width: 150px;">
                                     <option value="none">select one</option>
                                     <option value="Holi">Holi</option>
                                     <option value="Diwali">Diwali</option>
@@ -668,8 +667,6 @@ if ($productresult->num_rows > 0) {
                                 </select>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="text-end">
@@ -746,7 +743,8 @@ if ($productresult->num_rows > 0) {
                     selling_price: $("#sellingPrice").val(),
                     mrp: $("#MRP").val(),
                     stock_quantity: $("#stockQuantity").val(),
-                    packaging_details: $("#packaging").val() + " " + $("#unit").val()
+                    packaging_details: $("#packaging").val() + " " + $("#unit").val(),
+                    product_offers: $("#offers").val() + " " + $("#unit_offer").val()
                 };
 
                 $.ajax({

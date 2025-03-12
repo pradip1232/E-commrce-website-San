@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mrp = $_POST['mrp'];
     $stock_quantity = $_POST['stock_quantity'];
     $packaging = $_POST['packaging_details'];
+    $product_offers = $_POST['product_offers'];
 
     // Check if the product exists
     $check_query = "SELECT product_details FROM products WHERE product_id = ?";
@@ -59,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "selling_price" => $selling_price,
             "mrp" => $mrp,
             "stock_quantity" => $stock_quantity,
-            "packaging" => $packaging
+            "packaging" => $packaging,
+            "product_offers" => $product_offers
         ];
 
         // Convert updated data to JSON

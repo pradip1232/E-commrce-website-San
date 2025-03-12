@@ -860,16 +860,6 @@ $images = array_map('trim', explode(',', $imageString)); // Split and trim
         }
     }
 </style>
-
-
-
-
-
-
-
-
-
-
 <section>
     <h2 class="mt-5 pt-5 text-center discover-customer-powder pb-2 mb-3">
         Discover why customers rave about our Turmeric (Haldi) Powder! Here's what they're saying
