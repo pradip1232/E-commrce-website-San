@@ -71,6 +71,7 @@ include "config/conn.php";
 <?php
 $product_id = isset($_GET["id"]) ? trim($_GET["id"]) : null;
 $product_sku = isset($_GET["sku"]) ? trim($_GET["sku"]) : null;
+$product_batch = isset($_GET["batch"]) ? trim($_GET["batch"]) : null;
 
 // echo "Product ID Type: " . gettype($product_id) . " | Value: " . htmlspecialchars($product_id) . "<br>";
 // echo "Product SKU Type: " . gettype($product_sku) . " | Value: " . htmlspecialchars($product_sku) . "<br>";
@@ -216,10 +217,18 @@ if ($row = $result->fetch_assoc()) {
                 }
             }
 
+
+
             if ($product_details) :
                 echo '<div class="btn-group" role="group" id="packagingOptions">';
 
                 foreach ($product_details as $batch => $details) {
+                    // know the batchs number 
+                    // if (isset($details['product_tax']) && $details['product_tax'] === '20,Included tax') {
+                    //     preg_match('/\d+/', $batch, $matches);
+                    //     echo "The batch number is: " . ($matches[0] ?? 'Not found');
+                    //     break; // Stop loop once found
+                    // }
                     $activeClass = ($batch === $minBatch) ? 'btn-success' : 'btn-outline-secondary';
                     echo '<button class="btn ' . $activeClass . ' packaging-btn" data-price="' . $details['selling_price'] . '" data-batch="' . $batch . '" onclick="updatePrice(this)">' . $details['packaging'] . '</button>';
                 }
@@ -308,10 +317,14 @@ if ($row = $result->fetch_assoc()) {
 
             function proceedToCheckout() {
                 let email = "<?php echo $email; ?>";
-                let checkoutUrl = "<?php echo $isLoggedIn ? 'checkout' : 'login'; ?>";
+                let product_name = "<?php echo $allproduct["product_name"]; ?>";
+                let product_id = "<?php echo $allproduct["product_id"]; ?>";
+                let product_sku = "<?php echo $allproduct["product_sku"]; ?>";
 
+
+                let checkoutUrl = "<?php echo $isLoggedIn ? 'checkout' : 'login'; ?>";
                 if (checkoutUrl === "checkout") {
-                    checkoutUrl += `?email=${encodeURIComponent(email)}&price=${selectedPrice}&quantity=${quantity}&batch=${selectedBatch}`;
+                    checkoutUrl += `?name=${encodeURIComponent(product_name)}&id=${encodeURIComponent(product_id)}&sku=${encodeURIComponent(product_sku)}&&&email=${encodeURIComponent(email)}&price=${selectedPrice}&quantity=${quantity}&batch=${selectedBatch}`;
                 }
 
                 window.location.href = checkoutUrl;
@@ -325,20 +338,20 @@ if ($row = $result->fetch_assoc()) {
 
 
 <script>
-    function updatePrice(button) {
-        // Remove active class from all buttons
-        document.querySelectorAll("#packagingOptions button").forEach(btn => {
-            btn.classList.remove("btn-success");
-            btn.classList.add("btn-outline-secondary");
-        });
+    // function updatePrice(button) {
+    //     // Remove active class from all buttons
+    //     document.querySelectorAll("#packagingOptions button").forEach(btn => {
+    //         btn.classList.remove("btn-success");
+    //         btn.classList.add("btn-outline-secondary");
+    //     });
 
-        // Add active class to the selected button
-        button.classList.remove("btn-outline-secondary");
-        button.classList.add("btn-success");
+    //     // Add active class to the selected button
+    //     button.classList.remove("btn-outline-secondary");
+    //     button.classList.add("btn-success");
 
-        // Update the price
-        document.getElementById("productPrice").innerText = button.getAttribute("data-price");
-    }
+    //     // Update the price
+    //     document.getElementById("productPrice").innerText = button.getAttribute("data-price");
+    // }
 </script>
 
 

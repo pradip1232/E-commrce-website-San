@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -149,7 +145,7 @@ session_start();
             margin-top: 8rem;
         }
 
-        
+
         .first-section,
         .product-conatiner-page,
         .products-details-page,
@@ -390,13 +386,13 @@ session_start();
                                 <a class="nav-link text-dark" href="about-us">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="products">Health Care</a>
+                                <a class="nav-link text-dark" href="product">Health Care</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="products">Personal Care</a>
+                                <a class="nav-link text-dark" href="product">Personal Care</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="products">Ayurvedic Medicines</a>
+                                <a class="nav-link text-dark" href="product">Ayurvedic Medicines</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="contact-us">Contact Us</a>

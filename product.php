@@ -154,13 +154,25 @@ foreach ($categories as $category) {
                     <?php foreach ($products as $product) {
                         if (!empty($product['product_details']) && $product['product_details'] !== null) {
                             $product_details = json_decode($product['product_details'], true);
-
+                            // print_r($product_details);
                             if (is_array($product_details) && !empty($product_details)) {
                                 $prices = array_column($product_details, 'cost_price');
                                 $min_price = !empty($prices) ? min($prices) : 0;
+                                $batches_with_min_price = [];
+                                foreach ($product_details as $batch => $details) {
+                                    if (isset($details['cost_price']) && $details['cost_price'] == $min_price) {
+                                        $batches_with_min_price[] = $batch;
+                                    }
+                                }
 
+                                // if (!empty($batches_with_min_price)) {
+                                //     echo "Batches with the lowest cost price ($min_price): " . implode(', ', $batches_with_min_price);
+                                // } else {
+                                //     echo "No batches found with the minimum cost price.";
+                                // }
                                 $pp = array_column($product_details, 'packaging');
                                 $min_pp = !empty($pp) ? min($pp) : 0;
+                                // echo "minimum pakcgaing . $min_pp";
                             } else {
                                 continue;
                             }
@@ -172,9 +184,11 @@ foreach ($categories as $category) {
                         <div class="col-6 col-md-4 col-lg-3 product" data-category="<?= htmlspecialchars($product['product_category']) ?>">
                             <div class="products-card text-center p-3 ">
                                 <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
-                                <h6 class="mt-2" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
+                                <h6 class="mt-2"
+                                    onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>&batch=<?= urlencode(implode(',', $batches_with_min_price)) ?>'">
                                     <?= htmlspecialchars($product['product_name']) . " " . htmlspecialchars($min_pp) ?>
                                 </h6>
+
                                 <p class="text-dangerr fw-boldd">&#8377; <?= htmlspecialchars($min_price) ?></p>
                                 <div class="row mb-2">
                                     <div class="col">

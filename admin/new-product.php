@@ -191,6 +191,134 @@ include "config/conn.php";
             </div>
         </div>
 
+
+        <!-- product Inventory card here  -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div class="card p-3 border-0">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h5 class="fw-bold m-0">Products Inventory</h5>
+                            <input type="text" id="inventorySearch" class="form-control w-25" placeholder="Search...">
+                        </div>
+                        <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewProductinventory">
+                            + Add New
+                        </button> -->
+
+
+
+                        <div class="table-responsive">
+                            <table class="table align-middle" id="inventoryTable">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Product Name</th>
+                                        <!-- <th>Price</th> -->
+                                        <th>Packaging</th>
+                                        <th>Tax </th>
+                                        <th>Discount(%)</th>
+                                        <th>Selling Price</th>
+                                        <th>Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <?php
+
+                                // Query to fetch all products
+                                // $productsql = "SELECT * FROM products";
+                                // $productresult = $conn->query($productsql);
+
+                                // $products = [];
+
+                                // if ($productresult->num_rows > 0) {
+                                //     while ($row = $productresult->fetch_assoc()) {
+                                //         $products[] = $row;
+                                //     }
+                                //     // echo json_encode($products, JSON_PRETTY_PRINT);
+                                // } else {
+                                //     echo json_encode(["message" => "No products found"]);
+                                // }
+
+                                $productsql = "SELECT * FROM products";
+                                $productresult = $conn->query($productsql);
+
+                                $products = [];
+
+                                if ($productresult->num_rows > 0) {
+                                    while ($row = $productresult->fetch_assoc()) {
+                                        $products[] = $row;
+                                    }
+                                }
+                                ?>
+                                <tbody>
+                                    <?php if (!empty($products)): ?>
+                                        <?php foreach ($products as $index => $product): ?>
+                                            <?php
+                                            $productDetails = json_decode($product['product_details'], true);
+
+                                            // Check if product_details contains valid batch data
+                                            if (json_last_error() === JSON_ERROR_NONE && is_array($productDetails) && count($productDetails) > 0):
+                                                $rowspan = count($productDetails); // Number of batches
+                                                $firstRow = true;
+
+                                                foreach ($productDetails as $batch => $details): ?>
+                                                    <tr>
+                                                        <?php if ($firstRow): ?>
+                                                            <td rowspan="<?= $rowspan ?>"><?= $index + 1 ?></td>
+                                                            <td rowspan="<?= $rowspan ?>">
+                                                                <strong><?= htmlspecialchars($product['product_name']) ?></strong><br>
+                                                                <small class="text-muted"><?= htmlspecialchars($product['product_category']) ?></small>
+                                                            </td>
+                                                        <?php endif; ?>
+
+                                                        <td><?= strtoupper($batch) ?></td> <!-- Batch Name -->
+                                                        <td><?= !empty($details['product_tax']) ? htmlspecialchars($details['product_tax']) : 'NA' ?></td>
+                                                        <td><?= htmlspecialchars($details['discount']) ?>%</td> <!-- Discount -->
+                                                        <td>₹<?= htmlspecialchars($details['selling_price']) ?></td> <!-- Selling Price -->
+                                                        <td>
+                                                            <?php if (!empty($details['stock_quantity']) && $details['stock_quantity'] > 0): ?>
+                                                                <span class="badge bg-success">In Stock (<?= $details['stock_quantity'] ?>)</span>
+                                                            <?php else: ?>
+                                                                <span class="badge bg-danger">Out of Stock</span>
+                                                            <?php endif; ?>
+                                                        </td>
+                                                        <td>
+                                                            <!-- <button class="btn btn-primary btn-sm">Edit</button> -->
+                                                            <a class="btn btn-danger btn-sm delete-product-btn"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#deleteProductInventory"
+                                                                data-batch_number="<?= strtoupper($batch) ?>"
+                                                                data-sku="<?= htmlspecialchars($product['product_sku']) ?>"
+                                                                data-name="<?= htmlspecialchars($product['product_name']) ?>"
+                                                                data-product_id="<?= htmlspecialchars($product['product_id']) ?>">
+                                                                Delete
+                                                            </a>
+
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                    $firstRow = false;
+                                                endforeach;
+                                            endif;
+                                            ?>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="7">No products found.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- tags and product quantity here  -->
         <div class="container mt-4">
             <div class="row">
@@ -366,136 +494,7 @@ include "config/conn.php";
         </div>
 
 
-        <!-- product Inventory card here  -->
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 col-md-12">
-                    <div class="card p-3 border-0">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
 
-                            <h5 class="fw-bold m-0">Products Inventory</h5>
-                            <input type="text" id="inventorySearch" class="form-control w-25" placeholder="Search Inventory...">
-                        </div>
-                        <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewProductinventory">
-                            + Add New
-                        </button> -->
-
-
-
-                        <div class="table-responsive">
-                            <table class="table align-middle" id="inventoryTable">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Product Name</th>
-                                        <!-- <th>Price</th> -->
-                                        <th>Packaging</th>
-                                        <th>Cost Price</th>
-                                        <th>Discount(%)</th>
-                                        <th>Selling Price</th>
-                                        <th>Stock</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-
-                                <?php
-
-                                // Query to fetch all products
-                                // $productsql = "SELECT * FROM products";
-                                // $productresult = $conn->query($productsql);
-
-                                // $products = [];
-
-                                // if ($productresult->num_rows > 0) {
-                                //     while ($row = $productresult->fetch_assoc()) {
-                                //         $products[] = $row;
-                                //     }
-                                //     // echo json_encode($products, JSON_PRETTY_PRINT);
-                                // } else {
-                                //     echo json_encode(["message" => "No products found"]);
-                                // }
-
-                                $productsql = "SELECT * FROM products";
-                                $productresult = $conn->query($productsql);
-
-                                $products = [];
-
-                                if ($productresult->num_rows > 0) {
-                                    while ($row = $productresult->fetch_assoc()) {
-                                        $products[] = $row;
-                                    }
-                                }
-                                ?>
-                                <tbody>
-                                    <?php if (!empty($products)): ?>
-                                        <?php foreach ($products as $index => $product): ?>
-                                            <?php
-                                            $productDetails = json_decode($product['product_details'], true);
-
-                                            // Check if product_details contains valid batch data
-                                            if (json_last_error() === JSON_ERROR_NONE && is_array($productDetails) && count($productDetails) > 0):
-                                                $rowspan = count($productDetails); // Number of batches
-                                                $firstRow = true;
-
-                                                foreach ($productDetails as $batch => $details): ?>
-                                                    <tr>
-                                                        <?php if ($firstRow): ?>
-                                                            <td rowspan="<?= $rowspan ?>"><?= $index + 1 ?></td>
-                                                            <td rowspan="<?= $rowspan ?>">
-                                                                <strong><?= htmlspecialchars($product['product_name']) ?></strong><br>
-                                                                <small class="text-muted"><?= htmlspecialchars($product['product_category']) ?></small>
-                                                            </td>
-                                                        <?php endif; ?>
-
-                                                        <td><?= strtoupper($batch) ?></td> <!-- Batch Name -->
-                                                        <td>₹<?= htmlspecialchars($details['cost_price']) ?></td> <!-- Cost Price -->
-                                                        <td><?= htmlspecialchars($details['discount']) ?>%</td> <!-- Discount -->
-                                                        <td>₹<?= htmlspecialchars($details['selling_price']) ?></td> <!-- Selling Price -->
-                                                        <td>
-                                                            <?php if (!empty($details['stock_quantity']) && $details['stock_quantity'] > 0): ?>
-                                                                <span class="badge bg-success">In Stock (<?= $details['stock_quantity'] ?>)</span>
-                                                            <?php else: ?>
-                                                                <span class="badge bg-danger">Out of Stock</span>
-                                                            <?php endif; ?>
-                                                        </td>
-                                                        <td>
-                                                            <!-- <button class="btn btn-primary btn-sm">Edit</button> -->
-                                                            <a class="btn btn-danger btn-sm delete-product-btn"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#deleteProductInventory"
-                                                                data-batch_number="<?= strtoupper($batch) ?>"
-                                                                data-sku="<?= htmlspecialchars($product['product_sku']) ?>"
-                                                                data-name="<?= htmlspecialchars($product['product_name']) ?>"
-                                                                data-product_id="<?= htmlspecialchars($product['product_id']) ?>">
-                                                                Delete
-                                                            </a>
-
-                                                        </td>
-                                                    </tr>
-                                            <?php
-                                                    $firstRow = false;
-                                                endforeach;
-                                            endif;
-                                            ?>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="7">No products found.</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-
-
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
     </div>
 </main>
 
@@ -622,6 +621,22 @@ if ($productresult->num_rows > 0) {
                             <input type="number" class="form-control" id="discount" name="discount" min="0" max="100">
                         </div>
                     </div>
+                    <!-- tax row  -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="taxproducts" class="form-label">Tax %</label>
+                            <input type="number" class="form-control" id="taxproducts" placeholder="enter 6 %" name="taxproducts" min="0" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="taxType" class="form-label">Select Tax</label>
+                            <div class="input-group">
+                                <select class="form-select" id="tax_type" name="tax_type" required>
+                                    <option value="Excluded tax">Excluded tax</option>
+                                    <option value="Included tax">Include tax</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -634,6 +649,7 @@ if ($productresult->num_rows > 0) {
                         </div>
                     </div>
 
+
                     <!-- Stock & Inventory Management -->
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -643,7 +659,7 @@ if ($productresult->num_rows > 0) {
                         <div class="col-md-6 mb-3">
                             <label for="packaging" class="form-label">Packaging</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="packaging" name="packaging" placeholder="Enter the Packaging: 10, 75">
+                                <input type="text" class="form-control" id="packaging" name="packaging" placeholder="Enter the Packaging: 10, 75" required>
                                 <select class="form-select" id="unit" name="unit" required style="max-width: 80px;">
                                     <option value="gm">gm</option>
                                     <option value="kg">kg</option>
@@ -678,16 +694,29 @@ if ($productresult->num_rows > 0) {
                     document.addEventListener("DOMContentLoaded", function() {
                         const costPriceInput = document.getElementById("costPrice");
                         const discountInput = document.getElementById("discount");
+                        const taxInput = document.getElementById("taxproducts");
+                        const taxTypeSelect = document.getElementById("tax_type");
                         const sellingPriceInput = document.getElementById("sellingPrice");
 
                         function calculateSellingPrice() {
                             let costPrice = parseFloat(costPriceInput.value) || 0;
                             let discount = parseFloat(discountInput.value) || 0;
+                            let tax = parseFloat(taxInput.value) || 0;
+                            let taxType = taxTypeSelect.value;
 
-                            if (costPrice < 0 || discount < 0) {
-                                alert("Cost Price and Discount cannot be negative!");
+                            // console.clear();
+                            // console.log("==== DEBUGGING START ====");
+
+                            // console.log("Cost Price Entered:", costPrice);
+                            // console.log("Discount Entered:", discount);
+                            // console.log("Tax Entered:", tax, "%");
+                            // console.log("Selected Tax Type:", taxType);
+
+                            if (costPrice < 0 || discount < 0 || tax < 0) {
+                                alert("Cost Price, Discount, and Tax cannot be negative!");
                                 costPriceInput.value = Math.max(0, costPrice);
                                 discountInput.value = Math.max(0, discount);
+                                taxInput.value = Math.max(0, tax);
                                 return;
                             }
 
@@ -697,14 +726,32 @@ if ($productresult->num_rows > 0) {
                                 discount = 100;
                             }
 
-                            let sellingPrice = costPrice - (costPrice * discount / 100);
-                            sellingPriceInput.value = sellingPrice.toFixed(2);
+                            let discountedPrice = costPrice - (costPrice * discount / 100);
+                            // console.log("Price After Discount:", discountedPrice);
+
+                            let finalSellingPrice;
+
+                            if (taxType === "Included tax") {
+                                finalSellingPrice = discountedPrice * (1 + tax / 100);
+                                // console.log("Tax is Included. Selling Price after adding tax:", finalSellingPrice);
+                            } else {
+                                finalSellingPrice = discountedPrice;
+                                // console.log("Tax is Excluded. Selling Price remains the same:", finalSellingPrice);
+                            }
+
+                            sellingPriceInput.value = finalSellingPrice.toFixed(2);
+                            // console.log("Final Selling Price Set:", finalSellingPrice.toFixed(2));
+
+                            // console.log("==== DEBUGGING END ====");
                         }
 
                         costPriceInput.addEventListener("input", calculateSellingPrice);
                         discountInput.addEventListener("input", calculateSellingPrice);
+                        taxInput.addEventListener("input", calculateSellingPrice);
+                        taxTypeSelect.addEventListener("change", calculateSellingPrice);
                     });
                 </script>
+
 
 
             </div>
@@ -744,7 +791,8 @@ if ($productresult->num_rows > 0) {
                     mrp: $("#MRP").val(),
                     stock_quantity: $("#stockQuantity").val(),
                     packaging_details: $("#packaging").val() + " " + $("#unit").val(),
-                    product_offers: $("#offers").val() + " " + $("#unit_offer").val()
+                    product_offers: $("#offers").val() + " " + $("#unit_offer").val(),
+                    product_tax: $("#taxproducts").val() + "," + $("#tax_type").val()
                 };
 
                 $.ajax({
