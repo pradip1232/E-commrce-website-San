@@ -15,6 +15,22 @@
                 <i class="fas fa-box"></i> Products
             </a>
         </li>
+        <li class="<?php echo ($page == 'product_category') ? 'active' : ''; ?>">
+            <a href="index.php?page=product_category">
+                <i class="fas fa-tags"></i> Product Categories
+            </a>
+        </li>
+        <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
+            <a href="index.php?page=inventory">
+                <i class="fas fa-tags"></i> Inventory
+            </a>
+        </li>
+        <!-- <li class="<?php echo ($page == 'product-tax') ? 'active' : ''; ?>">
+            <a href="index.php?page=product-tax">
+                <i class="fas fa-tags"></i> Product Tax
+            </a>
+        </li> -->
+
         <li class="<?php echo ($page == 'subadmin') ? 'active' : ''; ?>">
             <a href="index.php?page=subadmin">
                 <i class="fas fa-users"></i> Sub Admin
