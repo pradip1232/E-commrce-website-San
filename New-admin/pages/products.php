@@ -180,11 +180,11 @@ include 'config/db_con.php';
                                             <option value="">Select Category</option>
                                             <?php
                                             // Fetch product categories from the database
-                                            $result = $conn->query("SELECT category_name FROM categories"); // Adjust the query as needed
+                                            $result = $conn->query("SELECT sub_category_name FROM categories"); // Adjust the query as needed
 
                                             if ($result) {
                                                 while ($row = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row['category_name']) . '">' . htmlspecialchars($row['category_name']) . '</option>';
+                                                    echo '<option value="' . htmlspecialchars($row['sub_category_name']) . '">' . htmlspecialchars($row['sub_category_name']) . '</option>';
                                                 }
                                             } else {
                                                 echo '<option value="">No categories available</option>';

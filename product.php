@@ -83,7 +83,7 @@ include "config/conn.php";
 
 <?php
 // Fetch categories and subcategories
-$sql = "SELECT `category_name`, `sub_category_name` FROM `product_categories`";
+$sql = "SELECT `category_name`, `sub_category_name` FROM   `categories`";
 $result = $conn->query($sql);
 
 $categories = [];
@@ -134,7 +134,8 @@ foreach ($categories as $category) {
 
             </div>
             <?php
-            $sql_product = "SELECT  * FROM `products`";
+            // Fetch products
+            $sql_product = "SELECT `id`, `product_id`, `product_sku`, `product_name`, `product_category` FROM `products`"; // Adjusted to select necessary fields
             $res_product = $conn->query($sql_product);
 
             $products = [];
@@ -146,72 +147,20 @@ foreach ($categories as $category) {
             ?>
             <div class="col-md-9 ooffset-md-3">
                 <div class="row" id="productContainer">
-                    <?php
-                    // Debugging: Print product array
-                    // print_r($products);
-                    ?>
-
-                    <?php foreach ($products as $product) {
-                        if (!empty($product['product_details']) && $product['product_details'] !== null) {
-                            $product_details = json_decode($product['product_details'], true);
-                            // print_r($product_details);
-                            if (is_array($product_details) && !empty($product_details)) {
-                                $prices = array_column($product_details, 'cost_price');
-                                $min_price = !empty($prices) ? min($prices) : 0;
-                                $batches_with_min_price = [];
-                                foreach ($product_details as $batch => $details) {
-                                    if (isset($details['cost_price']) && $details['cost_price'] == $min_price) {
-                                        $batches_with_min_price[] = $batch;
-                                    }
-                                }
-
-                                // if (!empty($batches_with_min_price)) {
-                                //     echo "Batches with the lowest cost price ($min_price): " . implode(', ', $batches_with_min_price);
-                                // } else {
-                                //     echo "No batches found with the minimum cost price.";
-                                // }
-                                $pp = array_column($product_details, 'packaging');
-                                $min_pp = !empty($pp) ? min($pp) : 0;
-                                // echo "minimum pakcgaing . $min_pp";
-                            } else {
-                                continue;
-                            }
-                        } else {
-                            continue;
-                        }
-                    ?>
-
-                        <div class="col-6 col-md-4 col-lg-3 product" data-category="<?= htmlspecialchars($product['product_category']) ?>">
+                    <?php foreach ($products as $product) { ?>
+                        <div class="col-6 col-md-4 col-lg-3 product mb-2" data-category="<?= htmlspecialchars($product['product_category']) ?>">
                             <div class="products-card text-center p-3 ">
-                                <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
-                                <h6 class="mt-2"
-                                    onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>&batch=<?= urlencode(implode(',', $batches_with_min_price)) ?>'">
-                                    <?= htmlspecialchars($product['product_name']) . " " . htmlspecialchars($min_pp) ?>
+                            <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
+                            <h6 class="mt-2" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
+                                    <?= htmlspecialchars($product['product_name']) ?>
                                 </h6>
-
-                                <p class="text-dangerr fw-boldd">&#8377; <?= htmlspecialchars($min_price) ?></p>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <span class="star-icons">
-                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                                            <img src="assets/images/Star 1 (1).png" alt="" class="stat-top" />
-                                        </span>
-                                    </div>
-                                </div>
+                                <p class="text-danger fw-bold">&#8377; 100</p>
                                 <button class="btn btn-success">Add to Cart</button>
                             </div>
                         </div>
-
                     <?php } ?>
-
-
-
                 </div>
                 <p id="noProductMessage" class="text-center text-danger mt-3" style="display: none;">No products available in this category</p>
-
             </div>
         </div>
     </div>

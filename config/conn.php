@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "sanjiveeka";
 // $servername = "localhost";
 // $username = "djfounda_sanjiveeka_data";
 // $password = "sanjiveeka_data@123";  

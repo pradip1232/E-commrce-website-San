@@ -206,31 +206,19 @@ if ($row = $result->fetch_assoc()) {
 
             <!-- Product Packaging Selection -->
             <?php
-            $product_details = json_decode($row['product_details'], true);
-            $minBatch = null;
-            $minPrice = PHP_INT_MAX;
+            $query = "SELECT `id`, `mrp`, `discount`, `selling_price`, `stock_quantity`, `packagingwithunit`, `manufacturing_date`, `expiration_date` FROM `inventory` WHERE `product_id` = '$product_id'";
+            $result = mysqli_query($conn, $query);
+            $inventoryDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            foreach ($product_details as $batch => $details) {
-                if ($details['selling_price'] < $minPrice) {
-                    $minPrice = $details['selling_price'];
-                    $minBatch = $batch;
-                }
-            }
-
-
-
-            if ($product_details) :
+            if ($inventoryDetails) :
                 echo '<div class="btn-group" role="group" id="packagingOptions">';
 
-                foreach ($product_details as $batch => $details) {
-                    // know the batchs number 
-                    // if (isset($details['product_tax']) && $details['product_tax'] === '20,Included tax') {
-                    //     preg_match('/\d+/', $batch, $matches);
-                    //     echo "The batch number is: " . ($matches[0] ?? 'Not found');
-                    //     break; // Stop loop once found
-                    // }
-                    $activeClass = ($batch === $minBatch) ? 'btn-success' : 'btn-outline-secondary';
-                    echo '<button class="btn ' . $activeClass . ' packaging-btn" data-price="' . $details['selling_price'] . '" data-batch="' . $batch . '" onclick="updatePrice(this)">' . $details['packaging'] . '</button>';
+                foreach ($inventoryDetails as $batch => $details) {
+                    $price = isset($details['discount']) && $details['discount'] > 0 
+                        ? htmlspecialchars($details['selling_price'], ENT_QUOTES, 'UTF-8') 
+                        : htmlspecialchars($details['mrp'], ENT_QUOTES, 'UTF-8');
+                    
+                    echo '<button class="btn packaging-btn" data-price="' . $price . '" data-batch="' . $batch . '" onclick="updatePrice(this)">' . htmlspecialchars($details['packagingwithunit'], ENT_QUOTES, 'UTF-8') . ' - ₹' . $price . '</button>';
                 }
 
                 echo '</div>';
