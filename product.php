@@ -134,8 +134,20 @@ foreach ($categories as $category) {
 
             </div>
             <?php
-            // Fetch products
-            $sql_product = "SELECT `id`, `product_id`, `product_sku`, `product_name`, `product_category` FROM `products`"; // Adjusted to select necessary fields
+            // Fetch products with selling_price and packagingwithunit from inventory
+            $sql_product = "
+                            SELECT 
+                                p.id,
+                                p.product_id,
+                                p.product_sku,
+                                p.product_name,
+                                p.product_category,
+                                i.selling_price,
+                                i.packagingwithunit
+                            FROM products p
+                            LEFT JOIN inventory i ON p.product_id = i.product_id
+                        ";
+
             $res_product = $conn->query($sql_product);
 
             $products = [];
@@ -145,17 +157,18 @@ foreach ($categories as $category) {
                 }
             }
             ?>
+
             <div class="col-md-9 ooffset-md-3">
                 <div class="row" id="productContainer">
                     <?php foreach ($products as $product) { ?>
                         <div class="col-6 col-md-4 col-lg-3 product mb-2" data-category="<?= htmlspecialchars($product['product_category']) ?>">
                             <div class="products-card text-center p-3 ">
-                            <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
-                            <h6 class="mt-2" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
-                                    <?= htmlspecialchars($product['product_name']) ?>
+                                <img src="./assets/images/product_images/haircare3.png" alt="img" class="img-fluid">
+                                <h6 class="mt-2 product-name" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
+                                    <?= htmlspecialchars($product['product_name']) . ' ' . ($product['packagingwithunit']) ?>
                                 </h6>
-                                <p class="text-danger fw-bold">&#8377; 100</p>
-                                <button class="btn btn-success">Add to Cart</button>
+                                <p class="text-dangerrr selling_price_product fw-bold">&#8377;   <?= ($product['selling_price']) ?></p>
+                                <button class="btn btn-successs addtocartbutton">Add to Cart</button>
                             </div>
                         </div>
                     <?php } ?>

@@ -30,6 +30,109 @@ session_start();
     <link rel="icon" href="assets/images/header-logo.webp" type="image/png">
 
 
+    <style>
+        .selling_price_product {
+            font-family: Archivo;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: rgba(72, 38, 7, 1);
+        }
+
+        .product-name {
+            font-family: Archivo;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: rgba(0, 0, 0, 1);
+            cursor: pointer;
+        }
+
+        .addtocartbutton {
+            background: rgba(119, 199, 18, 1);
+            color: white;
+            border-radius: 0px;
+            font-family: Roboto;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+
+        }
+
+        .price-container-details .discount {
+            color: rgba(72, 38, 7, 1);
+            font-family: 'Archivo', sans-serif;
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .price-container-details h4 {
+            color: rgba(119, 199, 18, 1) !important;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .price-container-details .mrp-price {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1;
+            color: rgba(72, 38, 7, 1) !important;
+            position: relative;
+        }
+
+        .price-container-details .mrp-price del {
+            position: relative;
+            display: inline-block;
+            /* color: rgba(72, 38, 7, 0.8); */
+        }
+
+        .price-container-details .mrp-price del::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            /* border-top: 2px solid rgba(255, 0, 0, 0.5); */
+            transform: rotate(-7deg);
+            transition: all 0.3s ease;
+        }
+
+        .key-benefits-section h2 {
+            font-family: Roboto;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: rgba(72, 38, 7, 1);
+        }
+
+        .key-benefits-section .btn-success {
+            background: rgba(119, 199, 18, 1);
+            color: white;
+            font-family: Archivo;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 150%;
+            letter-spacing: 0%;
+            text-align: center;
+            border-color: rgba(119, 199, 18, 1);
+        }
+    </style>
+
+
 
 
     <style>

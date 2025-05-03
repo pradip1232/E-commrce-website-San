@@ -206,24 +206,58 @@ if ($row = $result->fetch_assoc()) {
 
             <!-- Product Packaging Selection -->
             <?php
-            $query = "SELECT `id`, `mrp`, `discount`, `selling_price`, `stock_quantity`, `packagingwithunit`, `manufacturing_date`, `expiration_date` FROM `inventory` WHERE `product_id` = '$product_id'";
+            $query = "SELECT `id`, `mrp`, `discount`, `selling_price`, `stock_quantity`, `packagingwithunit`, `manufacturing_date`, `expiration_date` 
+          FROM `inventory` 
+          WHERE `product_id` = '$product_id'";
+
             $result = mysqli_query($conn, $query);
             $inventoryDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            if ($inventoryDetails) :
-                echo '<div class="btn-group" role="group" id="packagingOptions">';
+            if ($inventoryDetails): ?>
+                <div class="btn-group" role="group" id="packagingOptions">
+                    <?php foreach ($inventoryDetails as $batch => $details):
+                        $price = (isset($details['discount']) && $details['discount'] > 0)
+                            ? htmlspecialchars($details['selling_price'], ENT_QUOTES, 'UTF-8')
+                            : htmlspecialchars($details['mrp'], ENT_QUOTES, 'UTF-8');
+                        $packaging = htmlspecialchars($details['packagingwithunit'], ENT_QUOTES, 'UTF-8');
+                    ?>
+                        <button
+                            class="btn packaging-btn"
+                            data-price="<?= $price ?>"
+                            data-batch="<?= $batch ?>"
+                            onclick="updatePrice(this)">
+                            <?= $packaging ?>
+                        </button>
+                    <?php endforeach; ?>
+                </div>
 
-                foreach ($inventoryDetails as $batch => $details) {
-                    $price = isset($details['discount']) && $details['discount'] > 0 
-                        ? htmlspecialchars($details['selling_price'], ENT_QUOTES, 'UTF-8') 
-                        : htmlspecialchars($details['mrp'], ENT_QUOTES, 'UTF-8');
-                    
-                    echo '<button class="btn packaging-btn" data-price="' . $price . '" data-batch="' . $batch . '" onclick="updatePrice(this)">' . htmlspecialchars($details['packagingwithunit'], ENT_QUOTES, 'UTF-8') . ' - ₹' . $price . '</button>';
-                }
+                <div class="price-container-details mb-3 mt-3">
+                    <div class="d-flex align-items-center mb-1">
+                        <!-- Discount Percentage -->
+                        <span class="text-dangerr text-decoration-line-through me-3 fs-5 discount">
+                            -<?= (int)$inventoryDetails[0]['discount'] ?>%
+                        </span>
 
-                echo '</div>';
-            ?>
-                <h4 class="mt-3">₹ <span id="productPrice"><?php echo $minPrice; ?></span></h4>
+                        <!-- Selling Price -->
+                        <h4 class="fw-bold text-dark mb-0">
+                            ₹<span id="productPrice">
+
+                                <?= htmlspecialchars($inventoryDetails[0]['selling_price'], ENT_QUOTES, 'UTF-8') ?>
+                            </span>
+                        </h4>
+                    </div>
+
+                    <!-- MRP -->
+                    <div class="text-muted small mrp-price">
+                        M.R.P.: <span class="text-decoration-line-through"> <del>
+
+                                ₹<?= htmlspecialchars($inventoryDetails[0]["mrp"], ENT_QUOTES, 'UTF-8') ?>
+                        </span>
+                        </del>
+                    </div>
+                </div>
+
+
             <?php endif; ?>
 
             <!-- Quantity Selector -->
@@ -346,14 +380,40 @@ if ($row = $result->fetch_assoc()) {
 
 
 
+<div class="key-benefits-section py-5 bg-white">
+    <div class="container text-center">
+        <h2 class="fw-bold text-brown mb-4">Key Benefits</h2>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Anti-inflammatory properties</button>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Rich in antioxidants</button>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Support digestive health</button>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Boost immunity</button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Promotes skin health</button>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <button class="btn btn-success w-100">Support brain function</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
 
-
-
-<!-- 
 <section>
     <div class="container-fluid mt-5 pt-5">
         <div class="row top-spaces-for-navigation-nav p-0">
@@ -396,7 +456,7 @@ if ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </div>
-</section> -->
+</section>
 
 <style>
     /* Custom styles for mobile responsiveness */
@@ -434,79 +494,80 @@ if ($row = $result->fetch_assoc()) {
     }
 </style>
 <section>
-    <h2 class="mt-5 pt-5 text-center discover-customer-powder pb-2 mb-3">
-        Discover why customers rave about our Turmeric (Haldi) Powder! Here's what they're saying
-    </h2>
-    <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
-        <!-- Reviews buttons container above carousel items -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <button class="btn-ten-reviews" type="button">10 Reviews</button>
-            <button class="btn-write-reviews mr-4 " type="button">WRITE A REVIEW</button>
-        </div>
+    <div class="container">
+        <h2 class="mt-5 pt-5 text-center discover-customer-powder pb-2 mb-3">
+            Discover why customers rave about our Turmeric (Haldi) Powder! Here's what they're saying
+        </h2>
+        <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+            <!-- Reviews buttons container above carousel items -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn-ten-reviews" type="button">10 Reviews</button>
+                <button class="btn-write-reviews mr-4 " type="button">WRITE A REVIEW</button>
+            </div>
 
-        <div class="carousel-inner w-100">
-            <div class="carousel-item active">
-                <div class="col-md-3">
-                    <div class="card card-body" style="margin-right: 15px;">
-                        <h5 class="card-title sliderfirst-heading-1">Amandeep Singh</h5>
-                        <div class="stars custom-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            <div class="carousel-inner w-100">
+                <div class="carousel-item active">
+                    <div class="col-md-3">
+                        <div class="card card-body" style="margin-right: 15px;">
+                            <h5 class="card-title sliderfirst-heading-1">Amandeep Singh</h5>
+                            <div class="stars custom-stars">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                            <p class="card-text">The best turmeric powder I have ever used. The quality is
+                                outstanding.</p>
+                            <p class="card-date">June 4, 2024</p>
                         </div>
-                        <p class="card-text">The best turmeric powder I have ever used. The quality is
-                            outstanding.</p>
-                        <p class="card-date">June 4, 2024</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card card-body" style="margin-right: 15px;">
+                            <h5 class="card-title sliderfirst-heading-2">Aditya Sharma</h5>
+                            <div class="stars custom-stars">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                            <p class="card-text">I love this turmeric powder! It adds such a rich flavor to
+                                my dishes.</p>
+                            <p class="card-date">June 4, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card card-body" style="margin-right: 15px;">
+                            <h5 class="card-title sliderfirst-heading-3">Priya Mehta</h5>
+                            <div class="stars custom-stars">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                            <p class="card-text">Fantastic product! It has made a noticeable difference in
+                                my cooking.</p>
+                            <p class="card-date">June 3, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3">
+                        <div class="card card-body" style="margin-right: 15px;">
+                            <h5 class="card-title sliderfirst-heading-4">Ravi Kumar</h5>
+                            <div class="stars custom-stars">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                            <p class="card-text">High-quality turmeric powder with great color and aroma.
+                                Highly recommend.</p>
+                            <p class="card-date">June 2, 2024</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body" style="margin-right: 15px;">
-                        <h5 class="card-title sliderfirst-heading-2">Aditya Sharma</h5>
-                        <div class="stars custom-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="card-text">I love this turmeric powder! It adds such a rich flavor to
-                            my dishes.</p>
-                        <p class="card-date">June 4, 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body" style="margin-right: 15px;">
-                        <h5 class="card-title sliderfirst-heading-3">Priya Mehta</h5>
-                        <div class="stars custom-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="card-text">Fantastic product! It has made a noticeable difference in
-                            my cooking.</p>
-                        <p class="card-date">June 3, 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body" style="margin-right: 15px;">
-                        <h5 class="card-title sliderfirst-heading-4">Ravi Kumar</h5>
-                        <div class="stars custom-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="card-text">High-quality turmeric powder with great color and aroma.
-                            Highly recommend.</p>
-                        <p class="card-date">June 2, 2024</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" class="active" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" class="active" aria-label="Slide 4"></button>
-        </div>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" class="active" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" class="active" aria-label="Slide 4"></button>
+            </div>
 
-        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -516,6 +577,7 @@ if ($row = $result->fetch_assoc()) {
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button> -->
+        </div>
     </div>
 </section>
 
