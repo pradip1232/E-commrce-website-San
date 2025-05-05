@@ -67,25 +67,25 @@ include 'config/db_con.php';
 
                                         echo "<td>";
                                         // Edit Button
-                                    //     echo "<a href='#' 
-                                    // class='btn btn-sm btn-primary editProductBtn' 
-                                    // data-id='" . $row['product_id'] . "' 
-                                    // data-name='" . $row['product_name'] . "' 
-                                    
-                                    // data-bs-toggle='modal' 
-                                    // data-bs-target='#editProductModal'>
-                                    // Edit
-                                    // </a>";
+                                        //     echo "<a href='#' 
+                                        // class='btn btn-sm btn-primary editProductBtn' 
+                                        // data-id='" . $row['product_id'] . "' 
+                                        // data-name='" . $row['product_name'] . "' 
+
+                                        // data-bs-toggle='modal' 
+                                        // data-bs-target='#editProductModal'>
+                                        // Edit
+                                        // </a>";
 
                                         // Delete Button
-                                    //     echo "<a href='#' 
-                                    // class='btn btn-sm btn-danger deleteProductBtn' 
-                                    // data-id='" . $row['product_id'] . "' 
-                                    // data-name='" . $row['product_name'] . "' 
-                                    // data-bs-toggle='modal' 
-                                    // data-bs-target='#deleteProductModal'>
-                                    // Delete
-                                    // </a>";
+                                        //     echo "<a href='#' 
+                                        // class='btn btn-sm btn-danger deleteProductBtn' 
+                                        // data-id='" . $row['product_id'] . "' 
+                                        // data-name='" . $row['product_name'] . "' 
+                                        // data-bs-toggle='modal' 
+                                        // data-bs-target='#deleteProductModal'>
+                                        // Delete
+                                        // </a>";
 
 
                                         echo "</td>";

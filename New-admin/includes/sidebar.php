@@ -20,6 +20,16 @@
                 <i class="fas fa-tags"></i> Product Categories
             </a>
         </li>
+        <li class="<?php echo ($page == 'hsn-number') ? 'active' : ''; ?>">
+            <a href="index.php?page=hsn-number">
+                <i class="fas fa-tags"></i> Add HSN Number
+            </a>
+        </li>
+        <li class="<?php echo ($page == 'tax-rate') ? 'active' : ''; ?>">
+            <a href="index.php?page=tax-rate">
+                <i class="fas fa-tags"></i> Add Tax Rate
+            </a>
+        </li>
         <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
             <a href="index.php?page=inventory">
                 <i class="fas fa-tags"></i> Inventory
@@ -47,4 +57,4 @@
             </a>
         </li>
     </ul>
-</nav> 
+</nav>
