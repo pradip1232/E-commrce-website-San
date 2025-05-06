@@ -10,30 +10,38 @@
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </a>
         </li>
-        <li class="<?php echo ($page == 'products') ? 'active' : ''; ?>">
-            <a href="index.php?page=products">
-                <i class="fas fa-box"></i> Products
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link d-flex justify-content-between align-items-center" id="masterDropdown" data-bs-toggle="collapse" data-bs-target="#masterMenu" aria-expanded="false">
+                <span><i class="fas fa-plus"></i> Master</span>
+                <i class="fas fa-caret-down"></i>
             </a>
-        </li>
-        <li class="<?php echo ($page == 'product_category') ? 'active' : ''; ?>">
-            <a href="index.php?page=product_category">
-                <i class="fas fa-tags"></i> Product Categories
-            </a>
-        </li>
-        <li class="<?php echo ($page == 'hsn-number') ? 'active' : ''; ?>">
-            <a href="index.php?page=hsn-number">
-                <i class="fas fa-tags"></i> Add HSN Number
-            </a>
-        </li>
-        <li class="<?php echo ($page == 'tax-rate') ? 'active' : ''; ?>">
-            <a href="index.php?page=tax-rate">
-                <i class="fas fa-tags"></i> Add Tax Rate
-            </a>
-        </li>
-        <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
-            <a href="index.php?page=inventory">
-                <i class="fas fa-tags"></i> Inventory
-            </a>
+            <ul class="collapse list-unstyled ps-3" id="masterMenu">
+                <li class="<?php echo ($page == 'products') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="index.php?page=products">
+                        <i class="fas fa-box"></i> Products
+                    </a>
+                </li>
+                <li class="<?php echo ($page == 'product_category') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="index.php?page=product_category">
+                        <i class="fas fa-tags"></i> Product Categories
+                    </a>
+                </li>
+                <li class="<?php echo ($page == 'hsn-number') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="index.php?page=hsn-number">
+                        <i class="fas fa-tags"></i> Add HSN Number
+                    </a>
+                </li>
+                <li class="<?php echo ($page == 'tax-rate') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="index.php?page=tax-rate">
+                        <i class="fas fa-tags"></i> Add Tax Rate
+                    </a>
+                </li>
+                <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="index.php?page=inventory">
+                        <i class="fas fa-tags"></i> Inventory
+                    </a>
+                </li>
+            </ul>
         </li>
         <!-- <li class="<?php echo ($page == 'product-tax') ? 'active' : ''; ?>">
             <a href="index.php?page=product-tax">

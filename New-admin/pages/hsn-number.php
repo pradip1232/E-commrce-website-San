@@ -25,7 +25,7 @@ include 'config/db_con.php';
                 </div>
                 <div class="mb-3">
                     <label for="hsnDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="hsnDescription" name="hsnDescription" ></textarea>
+                    <textarea class="form-control" id="hsnDescription" name="hsnDescription"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -44,7 +44,7 @@ include 'config/db_con.php';
 
         const formData = new FormData(this);
 
-        fetch("save-hsn-number.php", {
+        fetch("config/save-hsn-number.php", {
                 method: "POST",
                 body: formData
             })
