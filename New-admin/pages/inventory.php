@@ -18,7 +18,7 @@ include 'config/db_con.php'; ?>
                 <th>Discount (%)</th>
                 <th>Selling Price</th>
                 <th>Stock Quantity</th>
-                <th>Packaging (gm/kg)</th>
+                <th>Unit (gm/kg)</th>
                 <th>Manufacturing Date</th>
                 <th>Expiration Date</th>
                 <th>Action</th>
@@ -36,7 +36,6 @@ include 'config/db_con.php'; ?>
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-                       
                         <td>{$row['product_name']}</td>
                         <td>{$row['custom_batch_name']}</td>
                         <td>{$row['mrp']}</td>
@@ -176,7 +175,7 @@ include 'config/db_con.php'; ?>
                                     <th>Discount (%)</th>
                                     <th>Selling Price</th>
                                     <th>Stock Quantity</th>
-                                    <th>Packaging(gm/kg) </th>
+                                    <th>Unit(gm/kg) </th>
                                     <th>Manufacturing Date</th>
                                     <th>Expiration Date</th>
                                     <th>Action</th>

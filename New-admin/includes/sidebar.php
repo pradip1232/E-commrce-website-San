@@ -36,12 +36,12 @@
                         <i class="fas fa-tags"></i> Add Tax Rate
                     </a>
                 </li>
-                <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
-                    <a class="nav-link" href="index.php?page=inventory">
-                        <i class="fas fa-tags"></i> Inventory
-                    </a>
-                </li>
             </ul>
+        </li>
+        <li class="<?php echo ($page == 'inventory') ? 'active' : ''; ?>">
+            <a class="nav-link" href="index.php?page=inventory">
+                <i class="fas fa-tags"></i> Inventory
+            </a>
         </li>
         <!-- <li class="<?php echo ($page == 'product-tax') ? 'active' : ''; ?>">
             <a href="index.php?page=product-tax">
