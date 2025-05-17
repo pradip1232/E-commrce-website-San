@@ -135,6 +135,10 @@ include 'config/db_con.php'; ?>
 
 
 
+
+
+
+
 <!-- Modal for Adding new Inventory -->
 <div class="modal fade" id="addInventoryModal" tabindex="-1" aria-labelledby="addInventoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="max-width: 95%;">
@@ -157,8 +161,11 @@ include 'config/db_con.php'; ?>
                             </div>
                             <div class="col-md-3">
                                 <label for="partyName" class="form-label">Party Name</label>
-                                <input type="text" class="form-control" id="partyName" name="partyName" required>
+                                <select class="form-select" id="partyName" name="partyName" required>
+                                    <option value="">Select Party</option>
+                                </select>
                             </div>
+
                             <div class="col-md-3">
                                 <label for="billingNumber" class="form-label">Billing Number</label>
                                 <input type="text" class="form-control" id="billingNumber" name="billingNumber" required>
@@ -168,8 +175,8 @@ include 'config/db_con.php'; ?>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Product ID</th>
                                     <th>Product Name</th>
+                                    <!-- <th>Product ID</th> -->
                                     <th>Custom Batch Name</th>
                                     <th>MRP</th>
                                     <th>Discount (%)</th>
@@ -188,7 +195,7 @@ include 'config/db_con.php'; ?>
                                             <!-- Options will be populated from the database -->
                                         </select>
                                     </td>
-                                    <td><input type="text" class="form-control" name="productName" id="productName" required readonly></td>
+                                    <!-- <td><input type="text" class="form-control" name="productName" id="productName" required readonly></td> -->
                                     <td><input type="text" class="form-control" name="customBatchName" id="customBatchName"></td>
                                     <td><input type="number" class="form-control" name="mrp" id="mrp" required oninput="calculateSellingPrice(this)"></td>
                                     <td><input type="number" class="form-control" name="discount" id="discount" required oninput="calculateSellingPrice(this)"></td>
@@ -226,6 +233,30 @@ include 'config/db_con.php'; ?>
 </div>
 
 <script>
+    // make here the party name with searchable 
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('config/get-party-names.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('partyName');
+                data.forEach(party => {
+                    const option = document.createElement('option');
+                    option.value = party.party_name;
+                    option.textContent = party.party_name;
+                    select.appendChild(option);
+                });
+
+                // Activate select2 on the dropdown
+                $('#partyName').select2({
+                    placeholder: "Select Party",
+                    allowClear: true
+                });
+            })
+            .catch(error => console.error('Error fetching party names:', error));
+    });
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         loadProducts();
         validateDates();
@@ -343,6 +374,7 @@ include 'config/db_con.php'; ?>
                 });
         });
 
+        // <td><input type="text" class="form-control" name="productName" id="productName"  required readonly></td>
         // Add new item row functionality
         document.getElementById('addNewItem').addEventListener('click', function() {
             const newRow = document.createElement('tr');
@@ -352,7 +384,6 @@ include 'config/db_con.php'; ?>
                     <!-- Options will be populated from the database -->
                 </select>
             </td>
-            <td><input type="text" class="form-control" name="productName" id="productName"  required readonly></td>
             <td><input type="text" class="form-control" name="customBatchName" id="customBatchName"></td>
             <td><input type="number" class="form-control" name="mrp" id="mrp"  required oninput="calculateSellingPrice(this)"></td>
             <td><input type="number" class="form-control" name="discount" id="discount" required oninput="calculateSellingPrice(this)"></td>
@@ -392,22 +423,28 @@ include 'config/db_con.php'; ?>
             })
             .then(data => {
                 const productSelects = document.querySelectorAll('select[name="productId"]');
+
                 productSelects.forEach(select => {
+                    // Populate options by product_name
                     data.products.forEach(product => {
                         const option = document.createElement('option');
-                        option.value = product.product_id;
-                        option.textContent = product.product_id; // Display product name
+                        option.value = product.product_name; // Use product_name as value
+                        option.textContent = product.product_name;
                         select.appendChild(option);
                     });
-                    // Add event listener to update product name when product ID changes
+
+                    // Handle change event using product_name
                     select.addEventListener('change', function() {
-                        const selectedProduct = data.products.find(p => p.product_id == this.value);
+                        const selectedProduct = data.products.find(p => p.product_name === this.value);
+
+                        console.log(selectedProduct);
                         if (selectedProduct) {
                             const productNameInput = select.closest('tr').querySelector('input[name="productName"]');
-                            productNameInput.value = selectedProduct.product_name; // Set product name
+                            productNameInput.value = selectedProduct.product_name;
                         }
                     });
                 });
+
             })
             .catch(error => {
                 console.error('Error loading products:', error);
@@ -439,7 +476,7 @@ include 'config/db_con.php'; ?>
 
             if (manufacturingDate > expirationDate) {
                 alert('Manufacturing date cannot be greater than expiration date.');
-                this.value = ''; // Clear the manufacturing date
+                this.value = '';
             }
         });
 
@@ -449,7 +486,7 @@ include 'config/db_con.php'; ?>
 
             if (manufacturingDate > expirationDate) {
                 alert('Manufacturing date cannot be greater than expiration date.');
-                this.value = ''; // Clear the expiration date
+                this.value = '';
             }
         });
     }

@@ -455,22 +455,22 @@ include 'config/db_con.php';
                                             }
                                             ?>
                                         </select>
-                </td>
-                <td><textarea class="form-control" name="keyBenefits" id="keyBenefits" rows="1" required></textarea></td>
-                <td><textarea class="form-control" name="description" id="description" rows="1" required></textarea></td>
-                <td><textarea class="form-control" name="productBenefits" id="productBenefits" rows="1" required></textarea></td>
-                <td><textarea class="form-control" name="productUsage" id="productUsage" rows="1" required></textarea></td>
-                <td>
-                    <input type="file" class="form-control" name="productImages" id="productImages" multiple accept="image/*" required>
-                    <small class="text-muted">Upload images</small>
-                </td>
-                <td>
-                    <input type="file" class="form-control" name="productVideos" id="productVideos" multiple accept="video/*" required>
-                    <small class="text-muted">Upload videos</small>
-                </td>
-                <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
-            </tr>
-        `;
+                                                </td>
+                                                <td><textarea class="form-control" name="keyBenefits" id="keyBenefits" rows="1" required></textarea></td>
+                                                <td><textarea class="form-control" name="description" id="description" rows="1" required></textarea></td>
+                                                <td><textarea class="form-control" name="productBenefits" id="productBenefits" rows="1" required></textarea></td>
+                                                <td><textarea class="form-control" name="productUsage" id="productUsage" rows="1" required></textarea></td>
+                                                <td>
+                                                    <input type="file" class="form-control" name="productImages" id="productImages" multiple accept="image/*" required>
+                                                    <small class="text-muted">Upload images</small>
+                                                </td>
+                                                <td>
+                                                    <input type="file" class="form-control" name="productVideos" id="productVideos" multiple accept="video/*" required>
+                                                    <small class="text-muted">Upload videos</small>
+                                                </td>
+                                                <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
+                                            </tr>
+                                        `;
             document.getElementById('productRows').insertAdjacentHTML('beforeend', newRow);
         });
 
