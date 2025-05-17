@@ -1,6 +1,7 @@
 <?php
 include 'config/db_con.php';
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="container-fluid">
     <div class="row">
@@ -272,24 +273,27 @@ include 'config/db_con.php';
                                     </td>
                                     <td><input type="text" class="form-control" id="hsnNumber" required></td>
                                     <td>
-                                        <select class="form-select" id="taxRate" required>
+                                        <select class="form-select" id="taxRate" name="taxRate" required>
                                             <option value="">Select Tax Rate</option>
                                             <?php
-                                            $result2 = $conn->query("SELECT rate FROM tax_rates"); // Adjust the query as needed
-                                            if ($result2) {
-                                                while ($row2 = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row2['rate']) . '">' . htmlspecialchars($row2['rate']) . '</option>';
+                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
+
+                                            if ($taxQuery && $taxQuery->num_rows > 0) {
+                                                while ($taxRow = $taxQuery->fetch_assoc()) {
+                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
+                                                    echo "<option value=\"$rate\">$rate%</option>";
                                                 }
                                             } else {
-                                                echo '<option value="">No categories available</option>';
+                                                // Optional fallback if no dynamic data found
+                                                echo '<option value="0">0%</option>';
+                                                echo '<option value="5">5%</option>';
+                                                echo '<option value="12">12%</option>';
+                                                echo '<option value="18">18%</option>';
+                                                echo '<option value="28">28%</option>';
                                             }
                                             ?>
-                                            <!-- <option value="0">0%</option>
-                                            <option value="5">5%</option>
-                                            <option value="12">12%</option>
-                                            <option value="18">18%</option>
-                                            <option value="28">28%</option> -->
                                         </select>
+
                                     </td>
                                     <td><textarea class="form-control" id="keyBenefits" name="keyBenefits" rows="1" required></textarea></td>
                                     <td><textarea class="form-control" id="description" name="description" rows="1" required></textarea></td>
@@ -364,18 +368,25 @@ include 'config/db_con.php';
                 <td><input type="text" class="form-control" id="hsnNumber" name="hsnNumber" required></td>
                 <td>
                     <select class="form-select" id="taxRate" name="taxRate" required>
-                        <option value="">Select Tax Rate</option>
-                        <?php
-                        $result2 = $conn->query("SELECT rate FROM tax_rates"); // Adjust the query as needed
-                        if ($result2) {
-                            while ($row2 = $result->fetch_assoc()) {
-                                echo '<option value="' . htmlspecialchars($row2['rate']) . '">' . htmlspecialchars($row2['rate']) . '</option>';
-                            }
-                        } else {
-                            echo '<option value="">No  available</option>';
-                        }
-                        ?>
-                    </select>
+                                            <option value="">Select Tax Rate</option>
+                                            <?php
+                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
+
+                                            if ($taxQuery && $taxQuery->num_rows > 0) {
+                                                while ($taxRow = $taxQuery->fetch_assoc()) {
+                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
+                                                    echo "<option value=\"$rate\">$rate%</option>";
+                                                }
+                                            } else {
+                                                // Optional fallback if no dynamic data found
+                                                echo '<option value="0">0%</option>';
+                                                echo '<option value="5">5%</option>';
+                                                echo '<option value="12">12%</option>';
+                                                echo '<option value="18">18%</option>';
+                                                echo '<option value="28">28%</option>';
+                                            }
+                                            ?>
+                                        </select>
                 </td>
                 <td><textarea class="form-control" id="keyBenefits" name="keyBenefits" rows="1" required></textarea></td>
                 <td><textarea class="form-control" id="description" name="description" rows="1" required></textarea></td>
@@ -424,20 +435,26 @@ include 'config/db_con.php';
                 </td>
                 <td><input type="text" class="form-control" name="hsnNumber" id="hsnNumber" required></td>
                 <td>
-                    <select class="form-select" name="taxRate" id="taxRate" required>
-                        <option value="">Select Tax Rate</option>
-                        <?php
-                        echo "Hello ";
-                        $result2 = $conn->query("SELECT rate FROM tax_rates"); // Adjust the query as needed
-                        if ($result2) {
-                            while ($row2 = $result->fetch_assoc()) {
-                                echo '<option value="' . htmlspecialchars($row2['rate']) . '">' . htmlspecialchars($row2['rate']) . '</option>';
-                            }
-                        } else {
-                            echo '<option value="">No categories available</option>';
-                        }
-                        ?>
-                    </select>
+                     <select class="form-select" id="taxRate" name="taxRate" required>
+                                            <option value="">Select Tax Rate</option>
+                                            <?php
+                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
+
+                                            if ($taxQuery && $taxQuery->num_rows > 0) {
+                                                while ($taxRow = $taxQuery->fetch_assoc()) {
+                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
+                                                    echo "<option value=\"$rate\">$rate%</option>";
+                                                }
+                                            } else {
+                                                // Optional fallback if no dynamic data found
+                                                echo '<option value="0">0%</option>';
+                                                echo '<option value="5">5%</option>';
+                                                echo '<option value="12">12%</option>';
+                                                echo '<option value="18">18%</option>';
+                                                echo '<option value="28">28%</option>';
+                                            }
+                                            ?>
+                                        </select>
                 </td>
                 <td><textarea class="form-control" name="keyBenefits" id="keyBenefits" rows="1" required></textarea></td>
                 <td><textarea class="form-control" name="description" id="description" rows="1" required></textarea></td>
