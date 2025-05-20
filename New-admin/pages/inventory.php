@@ -203,11 +203,10 @@ include 'config/db_con.php'; ?>
                                     <td><input type="number" class="form-control" name="stockQuantity" id="stockQuantity" required></td>
                                     <td>
                                         <input type="text" class="form-control" name="packaging" id="packaging">
-                                        <select class="form-select" name="packagingUnit" id="packagingUnit" required>
+                                        <select class="form-select" name="packagingUnit" id="packagingUnit" class="packagingUnit" required>
                                             <option value="">Select Unit</option>
-                                            <option value="gm">Gram (gm)</option>
-                                            <option value="kg">Kilogram (kg)</option>
                                         </select>
+
                                     </td>
 
 
@@ -389,17 +388,21 @@ include 'config/db_con.php'; ?>
             <td><input type="number" class="form-control" name="discount" id="discount" required oninput="calculateSellingPrice(this)"></td>
             <td><input type="number" class="form-control" name="sellingPrice" id="sellingPrice" readonly></td>
             <td><input type="number" class="form-control" name="stockQuantity" id="stockQuantity" required></td>
-            <td><input type="text" class="form-control" name="packaging" id="packaging">
-                <select class="form-select" name="packagingUnit" id="packagingUnit" required>
-                    <option value="">Select Unit</option>
-                    <option value="gm">Gram (gm)</option>
-                    <option value="kg">Kilogram (kg)</option>
-                </select>
-            </td>
+             <td>
+                                        <input type="text" class="form-control" name="packaging" id="packaging">
+                                        <select class="form-select" name="packagingUnit" id="packagingUnit" class="packagingUnit" required>
+                                            <option value="">Select Unit</option>
+                                        </select>
+
+                                    </td>
             <td><input type="date" class="form-control" name="manufacturingDate" id="manufacturingDate" required></td>
             <td><input type="date" class="form-control" name="expirationDate" id="expirationDate" required></td>
             <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
         `;
+
+
+
+
             document.getElementById('inventoryTableBody').appendChild(newRow);
             loadProducts(); // Load products for the new row
         });
@@ -490,4 +493,21 @@ include 'config/db_con.php'; ?>
             }
         });
     }
+</script>
+<!-- // fetch the unit fomr the table  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('config/get-units.php')
+            .then(response => response.json())
+            .then(data => {
+                const unitSelect = document.getElementById('packagingUnit');
+                data.forEach(unit => {
+                    const option = document.createElement('option');
+                    option.value = unit.unit;
+                    option.textContent = unit.unit;
+                    unitSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching units:', error));
+    });
 </script>
