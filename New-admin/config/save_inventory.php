@@ -5,57 +5,48 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Get the JSON data from the request
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Debugging: Print the received data
-// echo "Received Data: ";
-// print_r($data);
-// echo "<br>";
-
-// Prepare the SQL statement
-$stmt = $conn->prepare("INSERT INTO inventory ( inventory_number, date_uploaded, party_name, billing_number, product_id, product_name, custom_batch_name, mrp, discount, selling_price, stock_quantity, packagingwithunit, manufacturing_date, expiration_date) VALUES (?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-// Check if the statement was prepared successfully
-if (!$stmt) {
-    echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+if (!$data || !is_array($data)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid or empty data received.']);
     exit;
 }
 
-// Bind parameters
-$stmt->bind_param("sssssssdidsiss", $inventory_number, $inventoryDate, $party_name, $billing_number, $productId, $productName, $customBatchName, $mrp, $discount, $sellingPrice, $stockQuantity, $packagingwithunit, $manufacturingDate, $expirationDate);
+$stmt = $conn->prepare("INSERT INTO inventory (inventory_number, date_uploaded, party_name, billing_number, product_id, custom_batch_name, mrp, discount, selling_price, stock_quantity, packagingwithunit, manufacturing_date, expiration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-// Loop through each inventory item and insert into the database
+if (!$stmt) {
+    echo json_encode(['success' => false, 'message' => 'Prepare failed: (' . $conn->errno . ') ' . $conn->error]);
+    exit;
+}
+
+$stmt->bind_param("ssssssdidsiss", $inventory_number, $date_uploaded, $party_name, $billing_number, $productId, $customBatchName, $mrp, $discount, $sellingPrice, $stockQuantity, $packagingwithunit, $manufacturingDate, $expirationDate);
+
 foreach ($data as $item) {
-    $productId = $item['productId'];
-    $productName = $item['productName'];
-    $customBatchName = $item['customBatchName'];
-    $mrp = $item['mrp'];
-    $discount = $item['discount'];
-    $sellingPrice = $item['sellingPrice'];
-    $stockQuantity = $item['stockQuantity'];
-    $packagingwithunit = $item['packagingwithunit'];
-    $manufacturingDate = $item['manufacturingDate'];
-    $expirationDate = $item['expirationDate'];
-    $inventory_number = $item['inventoryNumber'];
-    $date_uploaded = $item['inventoryDate'];
-    $party_name = $item['partyName'];
-    $billing_number = $item["billingNumber"];
+    $productId = $item['productId'] ?? null;
+    $customBatchName = $item['customBatchName'] ?? '';
+    $mrp = $item['mrp'] ?? 0;
+    $discount = $item['discount'] ?? 0;
+    $sellingPrice = $item['sellingPrice'] ?? 0;
+    $stockQuantity = $item['stockQuantity'] ?? 0;
+    $packagingwithunit = $item['packagingwithunit'] ?? '';
+    $manufacturingDate = $item['manufacturingDate'] ?? null;
+    $expirationDate = $item['expirationDate'] ?? null;
+    $inventory_number = $item['inventoryNumber'] ?? null;
+    $date_uploaded = $item['inventoryDate'] ?? null;
+    $party_name = $item['partyName'] ?? null;
+    $billing_number = $item['billingNumber'] ?? null;
 
-    // Debugging: Print the values being inserted
-    // echo "Inserting: ";
-    // echo "Product ID: $productId, Product Name: $productName, Custom Batch Name: $customBatchName, MRP: $mrp, Discount: $discount, Selling Price: $sellingPrice, Stock Quantity: $stockQuantity, Packaging with Unit: $packagingwithunit, Manufacturing Date: $manufacturingDate, Expiration Date: $expirationDate<br>";
+    if (!$productId || !$inventory_number || !$date_uploaded || !$party_name || !$billing_number || !$mrp || !$discount || !$stockQuantity || !$packagingwithunit || !$manufacturingDate || !$expirationDate) {
+        echo json_encode(['success' => false, 'message' => 'Missing required fields in item data.']);
+        exit;
+    }
 
-    // Execute the statement
     if (!$stmt->execute()) {
-        echo json_encode(['message' => 'Error: ' . $stmt->error]);
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
         exit;
     }
 }
 
-// Close connections
 $stmt->close();
 $conn->close();
-
-// Return success message
-echo json_encode(['message' => 'Inventory saved successfully.']);
+echo json_encode(['success' => true, 'message' => 'Inventory saved successfully.']);

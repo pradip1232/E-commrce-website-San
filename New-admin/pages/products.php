@@ -22,7 +22,6 @@ include 'config/db_con.php';
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">Products List</h6>
                     <input type="text" id="searchInput" class="form-control" placeholder="Search by Product Name..." style="width: 200px;" onkeyup="liveSearch()">
-
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,9 +40,7 @@ include 'config/db_con.php';
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Existing product rows will be populated here -->
                                 <?php
-                                // Fetch products from the database
                                 $sql = "SELECT * FROM products";
                                 $result = mysqli_query($conn, $sql);
 
@@ -65,31 +62,7 @@ include 'config/db_con.php';
                                                             " . ($row['product_status'] == 'enabled' ? 'checked' : '') . ">
                                                     </div>
                                                 </td>";
-
-                                        echo "<td>";
-                                        // Edit Button
-                                        //     echo "<a href='#' 
-                                        // class='btn btn-sm btn-primary editProductBtn' 
-                                        // data-id='" . $row['product_id'] . "' 
-                                        // data-name='" . $row['product_name'] . "' 
-
-                                        // data-bs-toggle='modal' 
-                                        // data-bs-target='#editProductModal'>
-                                        // Edit
-                                        // </a>";
-
-                                        // Delete Button
-                                        //     echo "<a href='#' 
-                                        // class='btn btn-sm btn-danger deleteProductBtn' 
-                                        // data-id='" . $row['product_id'] . "' 
-                                        // data-name='" . $row['product_name'] . "' 
-                                        // data-bs-toggle='modal' 
-                                        // data-bs-target='#deleteProductModal'>
-                                        // Delete
-                                        // </a>";
-
-
-                                        echo "</td>";
+                                        echo "<td></td>";
                                         echo "</tr>";
                                     }
                                 } else {
@@ -138,51 +111,25 @@ include 'config/db_con.php';
             }
         }
 
-        // searchInput.addEventListener('keyup', () => {
-        //     const filter = searchInput.value.toLowerCase();
-        //     const rows = productTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-        //     for (let row of rows) {
-        //         const cells = row.getElementsByTagName('td');
-        //         let found = false;
-        //         for (let cell of cells) {
-        //             if (cell.textContent.toLowerCase().includes(filter)) {
-        //                 found = true;
-        //                 break;
-        //             }
-        //         }
-        //         row.style.display = found ? '' : 'none';
-        //     }
-        //     displayTable(1); // Reset to first page
-        // });
-
-        displayTable(currentPage); // Initial display
-    </script>
-    <script>
         function liveSearch() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#productTable tbody tr');
             rows.forEach(row => {
-                const productName = row.cells[2].textContent.toLowerCase(); // Assuming product name is in the 3rd column
+                const productName = row.cells[2].textContent.toLowerCase();
                 row.style.display = productName.includes(input) ? '' : 'none';
             });
         }
+
+        displayTable(currentPage);
     </script>
 </div>
 
-
-
-
-
-
-
-
-<!-- product status enable or disable  -->
+<!-- product status enable or disable -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.toggle-status').forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
                 const productId = this.dataset.id;
-                console.log("productid", productId);
                 const newStatus = this.checked ? 'enabled' : 'disabled';
 
                 fetch('config/update_product_status.php', {
@@ -210,15 +157,6 @@ include 'config/db_con.php';
         });
     });
 </script>
-
-
-
-
-
-
-
-
-
 
 <!-- Full Screen Add Product Modal -->
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
@@ -258,9 +196,7 @@ include 'config/db_con.php';
                                         <select class="form-select" id="productCategory" name="productCategory" required>
                                             <option value="">Select Category</option>
                                             <?php
-                                            // Fetch product categories from the database
-                                            $result = $conn->query("SELECT sub_category_name FROM categories"); // Adjust the query as needed
-
+                                            $result = $conn->query("SELECT sub_category_name FROM categories");
                                             if ($result) {
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo '<option value="' . htmlspecialchars($row['sub_category_name']) . '">' . htmlspecialchars($row['sub_category_name']) . '</option>';
@@ -271,34 +207,34 @@ include 'config/db_con.php';
                                             ?>
                                         </select>
                                     </td>
-                                    <td><input type="text" class="form-control" id="hsnNumber" required></td>
+                                    <td><input type="text" class="form-control" id="hsnNumber" name="hsnNumber" required></td>
                                     <td>
-                                        <select class="form-select" id="taxRate" name="taxRate" required>
-                                            <option value="">Select Tax Rate</option>
-                                            <?php
-                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
-
-                                            if ($taxQuery && $taxQuery->num_rows > 0) {
-                                                while ($taxRow = $taxQuery->fetch_assoc()) {
-                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
-                                                    echo "<option value=\"$rate\">$rate%</option>";
+                                        <div class="tax-rate-container">
+                                            <select class="form-select tax-category" name="taxCategory" required>
+                                                <option value="">Select Tax Category</option>
+                                                <?php
+                                                $categoryQuery = $conn->query("SELECT DISTINCT category FROM tax_rates");
+                                                if ($categoryQuery && $categoryQuery->num_rows > 0) {
+                                                    while ($row = $categoryQuery->fetch_assoc()) {
+                                                        $cat = htmlspecialchars($row['category']);
+                                                        echo "<option value=\"$cat\">$cat</option>";
+                                                    }
+                                                } else {
+                                                    echo '<option value="">No categories found</option>';
                                                 }
-                                            } else {
-                                                // Optional fallback if no dynamic data found
-                                                echo '<option value="0">0%</option>';
-                                                echo '<option value="5">5%</option>';
-                                                echo '<option value="12">12%</option>';
-                                                echo '<option value="18">18%</option>';
-                                                echo '<option value="28">28%</option>';
-                                            }
-                                            ?>
-                                        </select>
-
+                                                ?>
+                                            </select>
+                                            <input type="hidden" class="tax-rate-value" name="taxRate">
+                                            <div class="tax-rate-display mt-2">
+                                                Tax Rate: <span class="rate-value">--</span>% 
+                                                <span class="tax-loading" style="display: none;">(Loading...)</span>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td><textarea class="form-control" id="keyBenefits" name="keyBenefits" rows="1" required></textarea></td>
                                     <td><textarea class="form-control" id="description" name="description" rows="1" required></textarea></td>
-                                    <td><textarea class="form-control" id="productBenefits" rows="1" name="productBenefits" required></textarea></td>
-                                    <td><textarea class="form-control" id="productUsage" rows="1" name="productUsage" required></textarea></td>
+                                    <td><textarea class="form-control" id="productBenefits" name="productBenefits" rows="1" required></textarea></td>
+                                    <td><textarea class="form-control" id="productUsage" name="productUsage" rows="1" required></textarea></td>
                                     <td>
                                         <input type="file" class="form-control" id="productImages" name="productImages" multiple accept="image/*" required>
                                         <small class="text-muted">Upload images</small>
@@ -337,73 +273,118 @@ include 'config/db_con.php';
             return 'SKU' + Math.random().toString().slice(2, 15);
         }
 
-        // Set auto-generated values when modal opens
+        // Fetch tax rate for a category
+        function fetchTaxRate(category, container) {
+            const rateDisplay = container.querySelector('.rate-value');
+            const loadingDisplay = container.querySelector('.tax-loading');
+            const taxRateInput = container.querySelector('.tax-rate-value');
+
+            if (!category) {
+                rateDisplay.textContent = '--';
+                taxRateInput.value = '';
+                return;
+            }
+
+            loadingDisplay.style.display = 'inline';
+            rateDisplay.textContent = '--';
+
+            fetch(`config/get-latest-tax-rate.php?category=${encodeURIComponent(category)}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    loadingDisplay.style.display = 'none';
+                    if (data.success) {
+                        rateDisplay.textContent = data.tax_rate;
+                        taxRateInput.value = data.tax_rate;
+                    } else {
+                        rateDisplay.textContent = '--';
+                        taxRateInput.value = '';
+                        alert(data.error || 'No tax rate found for this category');
+                    }
+                })
+                .catch(error => {
+                    loadingDisplay.style.display = 'none';
+                    rateDisplay.textContent = '--';
+                    taxRateInput.value = '';
+                    console.error('Fetch error:', error);
+                    alert('Error fetching tax rate');
+                });
+        }
+
+        // Set auto-generated values and tax rate handler when modal opens
         const addProductModal = document.getElementById('addProductModal');
         addProductModal.addEventListener('show.bs.modal', function() {
             console.log("Add Product Modal opened.");
             const productId = generateProductId();
             const productSku = generateSku();
             const newRow = `
-            <tr>
-                <td><input type="text" class="form-control" value="${productId}" id="productId" name="productId" readonly></td>
-                <td><input type="text" class="form-control" value="${productSku}" id="productSku" name="productSku" readonly></td>
-                <td><input type="text" class="form-control" id="productName" name="productName" required></td>
-                <td>    
-                    <select class="form-select" id="productCategory" name="productCategory" required>
-                        <option value="">Select Category</option>
-                        <?php
-                        // Fetch product categories from the database
-                        $result = $conn->query("SELECT sub_category_name FROM categories"); // Adjust the query as needed
-
-                        if ($result) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . htmlspecialchars($row['sub_category_name']) . '">' . htmlspecialchars($row['sub_category_name']) . '</option>';
+                <tr>
+                    <td><input type="text" class="form-control" value="${productId}" id="productId" name="productId" readonly></td>
+                    <td><input type="text" class="form-control" value="${productSku}" id="productSku" name="productSku" readonly></td>
+                    <td><input type="text" class="form-control" id="productName" name="productName" required></td>
+                    <td>
+                        <select class="form-select" id="productCategory" name="productCategory" required>
+                            <option value="">Select Category</option>
+                            <?php
+                            $result = $conn->query("SELECT sub_category_name FROM categories");
+                            if ($result) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($row['sub_category_name']) . '">' . htmlspecialchars($row['sub_category_name']) . '</option>';
+                                }
+                            } else {
+                                echo '<option value="">No categories available</option>';
                             }
-                        } else {
-                            echo '<option value="">No categories available</option>';
-                        }
-                        ?>
-                    </select>
-                </td>
-                <td><input type="text" class="form-control" id="hsnNumber" name="hsnNumber" required></td>
-                <td>
-                    <select class="form-select" id="taxRate" name="taxRate" required>
-                                            <option value="">Select Tax Rate</option>
-                                            <?php
-                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
+                            ?>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" id="hsnNumber" name="hsnNumber" required></td>
+                    <td>
+                        <div class="tax-rate-container">
+                            <select class="form-select tax-category" name="taxCategory" required>
+                                <option value="">Select Tax Category</option>
+                                <?php
+                                $categoryQuery = $conn->query("SELECT DISTINCT category FROM tax_rates");
+                                if ($categoryQuery && $categoryQuery->num_rows > 0) {
+                                    while ($row = $categoryQuery->fetch_assoc()) {
+                                        $cat = htmlspecialchars($row['category']);
+                                        echo "<option value=\"$cat\">$cat</option>";
+                                    }
+                                } else {
+                                    echo '<option value="">No categories found</option>';
+                                }
+                                ?>
+                            </select>
+                            <input type="hidden" class="tax-rate-value" name="taxRate">
+                            <div class="tax-rate-display mt-2">
+                                Tax Rate: <span class="rate-value">--</span>% 
+                                <span class="tax-loading" style="display: none;">(Loading...)</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><textarea class="form-control" id="keyBenefits" name="keyBenefits" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" id="description" name="description" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" id="productBenefits" name="productBenefits" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" id="productUsage" name="productUsage" rows="1" required></textarea></td>
+                    <td>
+                        <input type="file" class="form-control" id="productImages" name="productImages" multiple accept="image/*" required>
+                        <small class="text-muted">Upload images</small>
+                    </td>
+                    <td>
+                        <input type="file" class="form-control" id="productVideos" name="productVideos" multiple accept="video/*" required>
+                        <small class="text-muted">Upload videos</small>
+                    </td>
+                    <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
+                </tr>
+            `;
+            document.getElementById('productRows').innerHTML = newRow;
 
-                                            if ($taxQuery && $taxQuery->num_rows > 0) {
-                                                while ($taxRow = $taxQuery->fetch_assoc()) {
-                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
-                                                    echo "<option value=\"$rate\">$rate%</option>";
-                                                }
-                                            } else {
-                                                // Optional fallback if no dynamic data found
-                                                echo '<option value="0">0%</option>';
-                                                echo '<option value="5">5%</option>';
-                                                echo '<option value="12">12%</option>';
-                                                echo '<option value="18">18%</option>';
-                                                echo '<option value="28">28%</option>';
-                                            }
-                                            ?>
-                                        </select>
-                </td>
-                <td><textarea class="form-control" id="keyBenefits" name="keyBenefits" rows="1" required></textarea></td>
-                <td><textarea class="form-control" id="description" name="description" rows="1" required></textarea></td>
-                <td><textarea class="form-control" id="productBenefits" name="productBenefits" rows="1" required></textarea></td>
-                <td><textarea class="form-control" id="productUsage" name="productUsage" rows="1" required></textarea></td>
-                <td>
-                    <input type="file" class="form-control" id="productImages" name="productImages" multiple accept="image/*" required>
-                    <small class="text-muted">Upload images</small>
-                </td>
-                <td>
-                    <input type="file" class="form-control" id="productVideos" name="productVideos" multiple accept="video/*" required>
-                    <small class="text-muted">Upload videos</small>
-                </td>
-                <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
-            </tr>
-        `;
-            document.getElementById('productRows').innerHTML = newRow; // Clear previous rows and add new row
+            // Initialize tax rate handler for the new row
+            const taxCategorySelect = document.querySelector('.tax-category');
+            taxCategorySelect.addEventListener('change', function() {
+                fetchTaxRate(this.value, this.closest('.tax-rate-container'));
+            });
         });
 
         // Add new row functionality
@@ -412,66 +393,71 @@ include 'config/db_con.php';
             const productId = generateProductId();
             const productSku = generateSku();
             const newRow = `
-            <tr>
-                <td><input type="text" class="form-control" value="${productId}" name="productId" id="productId" readonly></td>
-                <td><input type="text" class="form-control" value="${productSku}" name="productSku" id="productSku" readonly></td>
-                <td><input type="text" class="form-control" name="productName" id="productName" required></td>
-                <td>        
-                    <select class="form-select" name="productCategory" id="productCategory" required>
-                        <option value="">Select Category</option>
-                        <?php
-                        // Fetch product categories from the database
-                        $result = $conn->query("SELECT category_name FROM categories"); // Adjust the query as needed
-
-                        if ($result) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . htmlspecialchars($row['category_name']) . '">' . htmlspecialchars($row['category_name']) . '</option>';
+                <tr>
+                    <td><input type="text" class="form-control" value="${productId}" name="productId" id="productId" readonly></td>
+                    <td><input type="text" class="form-control" value="${productSku}" name="productSku" id="productSku" readonly></td>
+                    <td><input type="text" class="form-control" name="productName" id="productName" required></td>
+                    <td>
+                        <select class="form-select" name="productCategory" id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <?php
+                            $result = $conn->query("SELECT category_name FROM categories");
+                            if ($result) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($row['category_name']) . '">' . htmlspecialchars($row['category_name']) . '</option>';
+                                }
+                            } else {
+                                echo '<option value="">No categories available</option>';
                             }
-                        } else {
-                            echo '<option value="">No categories available</option>';
-                        }
-                        ?>
-                    </select>
-                </td>
-                <td><input type="text" class="form-control" name="hsnNumber" id="hsnNumber" required></td>
-                <td>
-                     <select class="form-select" id="taxRate" name="taxRate" required>
-                                            <option value="">Select Tax Rate</option>
-                                            <?php
-                                            $taxQuery = $conn->query("SELECT tax_rate FROM tax_rates");
-
-                                            if ($taxQuery && $taxQuery->num_rows > 0) {
-                                                while ($taxRow = $taxQuery->fetch_assoc()) {
-                                                    $rate = htmlspecialchars($taxRow['tax_rate']);
-                                                    echo "<option value=\"$rate\">$rate%</option>";
-                                                }
-                                            } else {
-                                                // Optional fallback if no dynamic data found
-                                                echo '<option value="0">0%</option>';
-                                                echo '<option value="5">5%</option>';
-                                                echo '<option value="12">12%</option>';
-                                                echo '<option value="18">18%</option>';
-                                                echo '<option value="28">28%</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                                </td>
-                                                <td><textarea class="form-control" name="keyBenefits" id="keyBenefits" rows="1" required></textarea></td>
-                                                <td><textarea class="form-control" name="description" id="description" rows="1" required></textarea></td>
-                                                <td><textarea class="form-control" name="productBenefits" id="productBenefits" rows="1" required></textarea></td>
-                                                <td><textarea class="form-control" name="productUsage" id="productUsage" rows="1" required></textarea></td>
-                                                <td>
-                                                    <input type="file" class="form-control" name="productImages" id="productImages" multiple accept="image/*" required>
-                                                    <small class="text-muted">Upload images</small>
-                                                </td>
-                                                <td>
-                                                    <input type="file" class="form-control" name="productVideos" id="productVideos" multiple accept="video/*" required>
-                                                    <small class="text-muted">Upload videos</small>
-                                                </td>
-                                                <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
-                                            </tr>
-                                        `;
+                            ?>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" name="hsnNumber" id="hsnNumber" required></td>
+                    <td>
+                        <div class="tax-rate-container">
+                            <select class="form-select tax-category" name="taxCategory" required>
+                                <option value="">Select Tax Category</option>
+                                <?php
+                                $categoryQuery = $conn->query("SELECT DISTINCT category FROM tax_rates");
+                                if ($categoryQuery && $categoryQuery->num_rows > 0) {
+                                    while ($row = $categoryQuery->fetch_assoc()) {
+                                        $cat = htmlspecialchars($row['category']);
+                                        echo "<option value=\"$cat\">$cat</option>";
+                                    }
+                                } else {
+                                    echo '<option value="">No categories found</option>';
+                                }
+                                ?>
+                            </select>
+                            <input type="hidden" class="tax-rate-value" name="taxRate">
+                            <div class="tax-rate-display mt-2">
+                                Tax Rate: <span class="rate-value">--</span>% 
+                                <span class="tax-loading" style="display: none;">(Loading...)</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><textarea class="form-control" name="keyBenefits" id="keyBenefits" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" name="description" id="description" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" name="productBenefits" id="productBenefits" rows="1" required></textarea></td>
+                    <td><textarea class="form-control" name="productUsage" id="productUsage" rows="1" required></textarea></td>
+                    <td>
+                        <input type="file" class="form-control" name="productImages" id="productImages" multiple accept="image/*" required>
+                        <small class="text-muted">Upload images</small>
+                    </td>
+                    <td>
+                        <input type="file" class="form-control" name="productVideos" id="productVideos" multiple accept="video/*" required>
+                        <small class="text-muted">Upload videos</small>
+                    </td>
+                    <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
+                </tr>
+            `;
             document.getElementById('productRows').insertAdjacentHTML('beforeend', newRow);
+
+            // Initialize tax rate handler for the new row
+            const newTaxCategorySelect = document.querySelectorAll('.tax-category');
+            newTaxCategorySelect[newTaxCategorySelect.length - 1].addEventListener('change', function() {
+                fetchTaxRate(this.value, this.closest('.tax-rate-container'));
+            });
         });
 
         // Remove row functionality
@@ -497,7 +483,7 @@ include 'config/db_con.php';
                 const product_name = row.querySelector('input[name="productName"]');
                 const product_category = row.querySelector('select[name="productCategory"]');
                 const hsn_number = row.querySelector('input[name="hsnNumber"]');
-                const tax_rate = row.querySelector('select[name="taxRate"]');
+                const tax_rate = row.querySelector('input[name="taxRate"]');
                 const key_benefits = row.querySelector('textarea[name="keyBenefits"]');
                 const description = row.querySelector('textarea[name="description"]');
                 const product_benefits = row.querySelector('textarea[name="productBenefits"]');
@@ -505,7 +491,6 @@ include 'config/db_con.php';
                 const product_images = row.querySelector('input[name="productImages"]');
                 const product_videos = row.querySelector('input[name="productVideos"]');
 
-                // Log the values of each field
                 console.log("Field values:");
                 console.log("Product ID:", product_id ? product_id.value : "Not found");
                 console.log("Product SKU:", product_sku ? product_sku.value : "Not found");
@@ -518,11 +503,9 @@ include 'config/db_con.php';
                 console.log("Product Benefits:", product_benefits ? product_benefits.value : "Not found");
                 console.log("Product Usage:", product_usage ? product_usage.value : "Not found");
 
-                // Collect only the filenames for images and videos
                 const imageFiles = Array.from(product_images.files).map(file => file.name);
                 const videoFiles = Array.from(product_videos.files).map(file => file.name);
 
-                // Check if elements exist before accessing their values
                 if (product_id && product_sku && product_name && product_category && hsn_number && tax_rate && key_benefits && description && product_benefits && product_usage) {
                     products.push({
                         product_id: product_id.value,
@@ -535,13 +518,12 @@ include 'config/db_con.php';
                         description: description.value,
                         product_benefits: product_benefits.value,
                         product_usage: product_usage.value,
-                        images: imageFiles, // Collect only filenames
-                        videos: videoFiles // Collect only filenames
+                        images: imageFiles,
+                        videos: videoFiles
                     });
                     console.log(`Row ${index + 1} data added to products array.`);
                 } else {
                     console.error(`Row ${index + 1}: One or more fields are missing.`);
-                    // Log missing fields
                     if (!product_id) console.error("Missing product_id");
                     if (!product_sku) console.error("Missing product_sku");
                     if (!product_name) console.error("Missing product_name");
@@ -552,13 +534,12 @@ include 'config/db_con.php';
                     if (!description) console.error("Missing description");
                     if (!product_benefits) console.error("Missing product_benefits");
                     if (!product_usage) console.error("Missing product_usage");
-                    return; // Exit the loop if any field is missing
+                    return;
                 }
             });
 
             console.log("Final products array:", products);
 
-            // Send data to the server
             fetch('config/save_products.php', {
                     method: 'POST',
                     headers: {
@@ -578,7 +559,6 @@ include 'config/db_con.php';
                     if (data.status === "success") {
                         alert(data.message);
                         bootstrap.Modal.getInstance(addProductModal).hide();
-                        // Optionally, refresh the product list or clear the form
                     } else {
                         alert("Error saving products.");
                     }
@@ -591,11 +571,9 @@ include 'config/db_con.php';
     });
 </script>
 
-
-<!-- edit or delete modal open  -->
+<!-- edit or delete modal open -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Populate Edit Modal
         document.querySelectorAll('.editProductBtn').forEach(button => {
             button.addEventListener('click', () => {
                 document.getElementById('editProductId').value = button.dataset.id;
@@ -605,7 +583,6 @@ include 'config/db_con.php';
             });
         });
 
-        // Populate Delete Modal
         document.querySelectorAll('.deleteProductBtn').forEach(button => {
             button.addEventListener('click', () => {
                 document.getElementById('deleteProductId').value = button.dataset.id;
