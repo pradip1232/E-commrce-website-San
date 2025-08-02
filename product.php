@@ -134,7 +134,6 @@ foreach ($categories as $category) {
 
             </div>
             <?php
-            // Fetch products with selling_price and packagingwithunit from inventory
             $sql_product = "
                             SELECT 
                                 p.id,
@@ -167,7 +166,7 @@ foreach ($categories as $category) {
                                 <h6 class="mt-2 product-name" onclick="window.location.href='product-dd?id=<?= urlencode($product['product_id']) ?>&sku=<?= urlencode($product['product_sku']) ?>'">
                                     <?= htmlspecialchars($product['product_name']) . ' ' . ($product['packagingwithunit']) ?>
                                 </h6>
-                                <p class="text-dangerrr selling_price_product fw-bold">&#8377;   <?= ($product['selling_price']) ?></p>
+                                <p class="text-dangerrr selling_price_product fw-bold">&#8377; <?= ($product['selling_price']) ?></p>
                                 <button class="btn btn-successs addtocartbutton">Add to Cart</button>
                             </div>
                         </div>

@@ -27,6 +27,47 @@ include "config/db_con.php";
     </div>
 </main>
 
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Party Name</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            try {
+                
+                // Prepare and execute query
+                $sql = "SELECT `id`, `party_name`, `created_at` FROM `party_table` WHERE 1";
+                $result = $conn->query($sql);
+
+                if ($result && $result->num_rows > 0) {
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['party_name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3' class='text-center'>No records found</td></tr>";
+                }
+
+                // Close connection
+                $conn->close();
+            } catch (Exception $e) {
+                echo "<tr><td colspan='3' class='text-center text-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
 <script>
     $(document).ready(function() {
         // Add new row

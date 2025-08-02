@@ -65,35 +65,6 @@ include "config/conn.php";
         border-color: rgba(119, 199, 18, 1);
     }
 </style>
-
-
-
-<?php
-$product_id = isset($_GET["id"]) ? trim($_GET["id"]) : null;
-$product_sku = isset($_GET["sku"]) ? trim($_GET["sku"]) : null;
-$product_batch = isset($_GET["batch"]) ? trim($_GET["batch"]) : null;
-
-// echo "Product ID Type: " . gettype($product_id) . " | Value: " . htmlspecialchars($product_id) . "<br>";
-// echo "Product SKU Type: " . gettype($product_sku) . " | Value: " . htmlspecialchars($product_sku) . "<br>";
-
-// if (!is_numeric($product_id) || !is_numeric($product_sku)) {
-//     die("<p class='text-danger'>Invalid product ID or SKU.</p>");
-// }
-
-$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ? AND product_sku = ?");
-$stmt->bind_param("ss", $product_id, $product_sku);
-$stmt->execute();
-$result = $stmt->get_result();
-$allproduct = [];
-
-if ($row = $result->fetch_assoc()) {
-    $allproduct = $row;
-} else {
-    echo "<p class='text-danger'>No product found for ID: " . htmlspecialchars($product_id) . "</p>";
-}
-?>
-
-
 <style>
     .products-details-page {
         /* margin-top: 1rem; */
@@ -127,6 +98,35 @@ if ($row = $result->fetch_assoc()) {
 
 
 
+<?php
+$product_id = isset($_GET["id"]) ? trim($_GET["id"]) : null;
+$product_sku = isset($_GET["sku"]) ? trim($_GET["sku"]) : null;
+$product_batch = isset($_GET["batch"]) ? trim($_GET["batch"]) : null;
+
+// echo "Product ID Type: " . gettype($product_id) . " | Value: " . htmlspecialchars($product_id) . "<br>";
+// echo "Product SKU Type: " . gettype($product_sku) . " | Value: " . htmlspecialchars($product_sku) . "<br>";
+
+// if (!is_numeric($product_id) || !is_numeric($product_sku)) {
+//     die("<p class='text-danger'>Invalid product ID or SKU.</p>");
+// }
+
+$stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ? AND product_sku = ?");
+$stmt->bind_param("ss", $product_id, $product_sku);
+$stmt->execute();
+$result = $stmt->get_result();
+$allproduct = [];
+
+if ($row = $result->fetch_assoc()) {
+    $allproduct = $row;
+} else {
+    echo "<p class='text-danger'>No product found for ID: " . htmlspecialchars($product_id) . "</p>";
+}
+?>
+
+
+
+
+
 
 <div class="container-fluid products-details-page">
     <div class="container">
@@ -144,23 +144,6 @@ if ($row = $result->fetch_assoc()) {
                     <div class="row g-2">
                         <!-- Small Image Boxes -->
                         <div class="col-2 col-md-10">
-                            <?php
-                            // if (!empty($images)) {
-                            //     foreach ($images as $image) {
-                            //         $imagePath = $uploadedimgpath . $image;
-
-                            //         if (file_exists($imagePath)) {
-                            //             $escapedImagePath = htmlspecialchars($imagePath, ENT_QUOTES, 'UTF-8');
-                            //             echo "<img src='$escapedImagePath' alt='Small Image' class='img-fluid small-image' onclick='swapImages(this)'>";
-                            //         } else {
-                            //             echo "⚠ Image not found: $imagePath<br>";
-                            //         }
-                            //     }
-                            // } else {
-                            //     echo "No images found.";
-                            // }
-                            ?>
-
                             <img src="assets/images/Rectangle 5.png" alt="rectangle-border" class="img-fluid small-box-img">
                             <img src="assets/images/turmeric-power.png" alt="Small Image 1" class="img-fluid small-image" onclick="swapImages(this)">
                         </div>
@@ -170,15 +153,6 @@ if ($row = $result->fetch_assoc()) {
                 <!-- Left Column for Small Image Thumbnails -->
                 <div class="col-md-7 d-flex align-items-center justify-content-center ">
                     <img src="assets/images/Rectangle 5.png" alt="rectangle-border" class="img-fluid">
-
-                    <?php
-                    // if (!empty($images) && isset($images[0])) {
-                    //     $mainImage = htmlspecialchars($uploadedimgpath . $images[0], ENT_QUOTES, 'UTF-8');
-                    //     echo '<img id="main-image" src="' . $mainImage . '" alt="Main Image" class="img-fluid individual-haldi-powder-one position-absolute">';
-                    // } else {
-                    //     echo "No images found.";
-                    // }
-                    ?>
                     <img id="main-image" src="assets/images/turmeric-power.png" alt="Main Image" class="img-fluid individual-haldi-powder-one position-absolute">
                 </div>
             </div>

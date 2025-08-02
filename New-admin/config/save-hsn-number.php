@@ -19,3 +19,11 @@ if ($stmt->execute()) {
 $stmt->close();
 $conn->close();
 ?>
+
+
+<!-- CREATE TABLE hsn_codes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  hsn_number VARCHAR(50) NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+); -->

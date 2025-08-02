@@ -1,5 +1,13 @@
+<?php
+include "config/db_con.php";
+
+
+?>
+
+
+
 <!-- Button to trigger modal -->
-<button class="btn btn-primary" id="newUnitBtn">New</button>
+<button class="btn btn-primary" id="newUnitBtn"> Add New</button>
 
 <!-- Modal -->
 <div class="modal fade" id="unitModal" tabindex="-1">
@@ -68,6 +76,61 @@
             </div>
         </form>
     </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Unit</th>
+                <th>Category ID</th>
+                <th>GST UQC</th>
+                <th>Type</th>
+                <th>Ratio</th>
+                <th>Rounding Precision</th>
+                <th>Active</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+
+            try {
+
+
+                // Prepare and execute query
+                $sql = "SELECT `id`, `unit`, `category_id`, `gst_uqc`, `type`, `ratio`, `rounding_precision`, `active`, `created_at` FROM `unit_measure` WHERE 1";
+                $result = $conn->query($sql);
+
+                if ($result && $result->num_rows > 0) {
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['unit']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['category_id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['gst_uqc']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['type']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['ratio']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['rounding_precision']) . "</td>";
+                        echo "<td>" . ($row['active'] ? 'Yes' : 'No') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='9' class='text-center'>No records found</td></tr>";
+                }
+
+                // Close connection
+                $conn->close();
+            } catch (Exception $e) {
+                echo "<tr><td colspan='9' class='text-center text-danger'>Error: " . htmlspecialchars($e->getMessage()) . "</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
 
 <script>

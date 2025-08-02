@@ -184,7 +184,7 @@ if (empty($product_id)) {
 
 // echo "Product ID: " . htmlspecialchars($product_id) . "<br>";
 
-$sql = "SELECT * FROM products_new WHERE product_id = '$product_id'";
+$sql = "SELECT * FROM products WHERE product_id = '$product_id'";
 $result = $conn->query($sql);
 
 $productDetails = $result->fetch_assoc();
